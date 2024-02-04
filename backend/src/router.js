@@ -12,6 +12,8 @@ const userControllers = require("./controllers/userControllers");
 const digimonControllers = require("./controllers/digimonControllers");
 const collectedControllers = require("./controllers/collectedControllers");
 const messageControllers = require("./controllers/messageControllers");
+const userMiddleware = require("./middlewares/userMiddleware");
+const { hashPassword, verifyToken } = require("./services/auth");
 
 // Define the API routes
 
@@ -35,7 +37,7 @@ router.delete("/digimons/:id", digimonControllers.deleted);
 
 /* ***************************** USER ***************************************** */
 // Post
-router.post("/user", userControllers.add);
+router.post("/user", userMiddleware, hashPassword, userControllers.add);
 // Get
 router.get("/user", userControllers.browse);
 router.get("/user/all", userControllers.readAllUsers);
@@ -66,5 +68,7 @@ router.delete("/message/user/:id", messageControllers.destroyUser);
 router.delete("/message/:id", messageControllers.destroyMessage);
 
 /* ************************************************************************* */
+
+router.use(verifyToken);
 
 module.exports = router;
