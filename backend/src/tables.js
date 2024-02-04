@@ -3,11 +3,16 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ItemManager = require("./models/ItemManager");
+const UsersManager = require("./models/UsersManager");
+const MessagesManager = require("./models/MessagesManager");
+const DigimonsManager = require("./models/DigimonsManager");
+const CollectedsManager = require("./models/CollectedsManager");
 
 const managers = [
-  ItemManager,
-  // Add other managers here
+  UsersManager,
+  MessagesManager,
+  DigimonsManager,
+  CollectedsManager,
 ];
 
 // Create an empty object to hold data managers for different tables
