@@ -75,7 +75,7 @@ const read = (req, res, next) => {
 
 /* ******************************* DELETE ****************************** */
 
-const deleteMessage = (req, res, next) => {
+const destroyMessage = (req, res, next) => {
   const messageId = req.params.id;
 
   try {
@@ -87,7 +87,7 @@ const deleteMessage = (req, res, next) => {
   }
 };
 
-const deleteUser = (req, res, next) => {
+const destroyUser = (req, res, next) => {
   const userId = req.params.id;
 
   try {
@@ -107,6 +107,6 @@ module.exports = {
   edit,
   browse,
   read,
-  deleteMessage,
-  deleteUser,
+  destroyMessage,
+  destroyUser,
 };
