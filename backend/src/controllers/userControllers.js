@@ -97,7 +97,7 @@ const edit = async (req, res) => {
       return res.status(400).json({ message: "Empty body" });
     }
 
-    const { username, email, password, digiPoint } = req.body;
+    const { username, email, description } = req.body;
 
     const haveUser = await tables.user.read(id);
 
@@ -113,11 +113,8 @@ const edit = async (req, res) => {
     if (email !== undefined) {
       updatedFields.email = email;
     }
-    if (password !== undefined) {
-      updatedFields.password = password;
-    }
-    if (digiPoint !== undefined) {
-      updatedFields.digi_point = digiPoint;
+    if (description !== undefined) {
+      updatedFields.description = description;
     }
 
     const affectedRows = await tables.user.update(id, updatedFields);
@@ -130,6 +127,27 @@ const edit = async (req, res) => {
     return res.json({ message: "Success Update", user: editeduser });
   } catch (err) {
     return res.status(500).json({ message: "Error on user update" });
+  }
+};
+
+const editDigiPoint = async (req, res) => {
+  try {
+    if (!req.body) {
+      res.status(400).json({ message: "Empty body" });
+    }
+    const { id } = req.params;
+    const { digiPoint } = req.body;
+
+    const affectedRows = await tables.digimons.update(id, digiPoint);
+
+    if (affectedRows === 0) {
+      res.status(500).json({ message: "Update fail" });
+    } else {
+      res.json({ message: "Success Update", user: affectedRows });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Error on user update" });
+    throw err;
   }
 };
 
@@ -155,5 +173,6 @@ module.exports = {
   readDate,
   add,
   edit,
+  editDigiPoint,
   deleteUser,
 };

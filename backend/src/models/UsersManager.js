@@ -98,7 +98,7 @@ class UsersManager extends AbstractManager {
   /* ******************************* Update ****************************** */
 
   async update(id, updatesFields) {
-    const allowedFields = ["username", "email", "password", "description"];
+    const allowedFields = ["username", "email", "description"];
 
     const fieldsToUpdate = Object.keys(updatesFields).filter((field) =>
       allowedFields.includes(field)
