@@ -80,7 +80,9 @@ const add = async (req, res, next) => {
     if (!newDigimon) {
       res.status(400).json({ message: "Error adding digimon" });
     } else {
-      res.status(201).json(newDigimon);
+      res
+        .status(201)
+        .json({ message: "Success adding digimon", digimon: newDigimon });
     }
   } catch (err) {
     next(err);
