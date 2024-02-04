@@ -8,48 +8,52 @@ class DigimonsManager extends AbstractManager {
   /* ******************************* Create ****************************** */
 
   async create(digimon) {
-    try{
-    const [result] = await this.database.query(
-      `insert into ${this.table} (name, img, level) values (?,?,?)`,
-      [digimon.name, digimon.img, digimon.level]
-    );
-    return result.insertId;
-    }catch(error){
-        console.error("Error on create digimon!", error);
+    try {
+      const [result] = await this.database.query(
+        `insert into ${this.table} (name, img, level) values (?,?,?)`,
+        [digimon.name, digimon.img, digimon.level]
+      );
+      return result.insertId;
+    } catch (error) {
+      console.error("Error on create digimon!", error);
+      throw error;
     }
   }
 
   /* ******************************* Read ****************************** */
 
   async read(id) {
-    try{
-    const [result] = await this.database.query(
-      `select id, name, img, level from ${this.table} where id LIKE ?`,
-      [id]
-    );
-    return result;
-    }catch(error){
-        console.error("Error on read digimon!", error);
+    try {
+      const [result] = await this.database.query(
+        `select id, name, img, level from ${this.table} where id LIKE ?`,
+        [id]
+      );
+      return result;
+    } catch (error) {
+      console.error("Error on read digimon!", error);
+      throw error;
     }
- }
+  }
 
   async readAll() {
-    try{
-    const [result] = await this.database.query(
-      `select id, name, img, level from ${this.table}`
-    );
-    return result;
-    }catch(error){
-        console.error("Error on readAll digimons!", error);
+    try {
+      const [result] = await this.database.query(
+        `select id, name, img, level from ${this.table}`
+      );
+      return result;
+    } catch (error) {
+      console.error("Error on readAll digimons!", error);
+      throw error;
     }
   }
 
   async readAllDigimons() {
-    try{
-    const [rows] = await this.database.query(`SELECT id FROM ${this.table}`);
-    return rows[rows.length - 1];
-    }catch(error){
-        console.error("Error on readAllDigimons!", error);
+    try {
+      const [rows] = await this.database.query(`SELECT id FROM ${this.table}`);
+      return rows[rows.length - 1];
+    } catch (error) {
+      console.error("Error on readAllDigimons!", error);
+      throw error;
     }
   }
 
@@ -82,14 +86,15 @@ class DigimonsManager extends AbstractManager {
   /* ******************************* Delete ****************************** */
 
   async delete(id) {
-    try{
-    const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
-      [id]
-    );
-    return result.affectedRows;
-    }catch(error){
-        console.error("Error on delete digimon!", error);
+    try {
+      const [result] = await this.database.query(
+        `delete from ${this.table} where id = ?`,
+        [id]
+      );
+      return result.affectedRows;
+    } catch (error) {
+      console.error("Error on delete digimon!", error);
+      throw error;
     }
   }
 }
