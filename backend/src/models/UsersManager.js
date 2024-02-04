@@ -14,79 +14,85 @@ class UsersManager extends AbstractManager {
         [user.username, user.email, user.password, user.registerDate]
       );
       return result.insertId;
-    }catch(error){
+    } catch (error) {
       console.error("Error on create user!", error);
+      throw error;
     }
-    }
-    
+  }
 
   /* ******************************* Read ****************************** */
 
   async getByUsername(username) {
-    try{
-    const [result] = await this.database.query(
-      `select id, username, email, description, register_date, is_admin, digi_point from ${this.table} where username LIKE ?`,
-      [`%${username}%`]
-    );
-    return result;
-    }catch(error){
-        console.error("Error on getByUsername!", error);
-        }
+    try {
+      const [result] = await this.database.query(
+        `select id, username, email, description, register_date, is_admin, digi_point from ${this.table} where username LIKE ?`,
+        [`%${username}%`]
+      );
+      return result;
+    } catch (error) {
+      console.error("Error on getByUsername!", error);
+      throw error;
+    }
   }
 
   async read(id) {
-    try{
-    const [result] = await this.database.query(
-      `select id, username, email, description, register_date, is_admin, digi_point from ${this.table} where id LIKE ?`,
-      [id]
-    );
-    return result;
-    }catch(error){
-        console.error("Error on read user!", error);  
+    try {
+      const [result] = await this.database.query(
+        `select id, username, email, description, register_date, is_admin, digi_point from ${this.table} where id LIKE ?`,
+        [id]
+      );
+      return result;
+    } catch (error) {
+      console.error("Error on read user!", error);
+      throw error;
     }
   }
 
   async readEmail(email) {
-    try{
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE email = ?`,
-      [email]
-    );
-    return rows[0];
-    }catch(error){
-        console.error("Error on readEmail!", error);
+    try {
+      const [rows] = await this.database.query(
+        `SELECT * FROM ${this.table} WHERE email = ?`,
+        [email]
+      );
+      return rows[0];
+    } catch (error) {
+      console.error("Error on readEmail!", error);
+      throw error;
     }
   }
 
   async readAll() {
-    try{
-    const [result] = await this.database.query(
-      `select id, username, email, description, register_date, is_admin, digi_point from ${this.table}`
-    );
-    return result;
-    }catch(error){
-        console.error("Error on readAll user!", error);
+    try {
+      const [result] = await this.database.query(
+        `select id, username, email, description, register_date, is_admin, digi_point from ${this.table}`
+      );
+      return result;
+    } catch (error) {
+      console.error("Error on readAll user!", error);
+      throw error;
     }
   }
 
   async readDate(registerDate) {
-    try{
-    const [rows] = await this.database.query(
-      `SELECT id, username, email, description, register_date, is_admin, digi_point FROM ${this.table} WHERE register_date LIKE ?`,
-      [`%${registerDate}%`]
-    );
-    return rows;
-    }catch(error){
-        console.error("Error on readDate!", error);
+    try {
+      const [rows] = await this.database.query(
+        `SELECT id, username, email, description, register_date, is_admin, digi_point FROM ${this.table} WHERE register_date LIKE ?`,
+        [`%${registerDate}%`]
+      );
+      return rows;
+    } catch (error) {
+      console.error("Error on readDate!", error);
+      throw error;
     }
   }
 
   async readAllUsers() {
-    try{
-    const [rows] = await this.database.query(`SELECT id FROM ${this.table}`);
-    return rows[rows.length - 1];
-    }catch(error){
-        console.error("Error on readAllUsers!", error);
+    try {
+      const [rows] = await this.database.query(`SELECT id FROM ${this.table}`);
+      return rows[rows.length - 1];
+    } catch (error) {
+      console.error("Error on readAllUsers!", error);
+      throw error;
     }
   }
   /* ******************************* Update ****************************** */
@@ -116,22 +122,23 @@ class UsersManager extends AbstractManager {
   }
 
   async updateDigiPoint(id, digiPoint) {
-    try{
-    const [result] = await this.database.query(
-      `UPDATE ${this.table} SET digi_point = ? WHERE id = ?`,
-      [digiPoint, id]
-    );
-    if(result.affectedRows === 0){
+    try {
+      const [result] = await this.database.query(
+        `UPDATE ${this.table} SET digi_point = ? WHERE id = ?`,
+        [digiPoint, id]
+      );
+      if (result.affectedRows === 0) {
         throw new Error("DigiPoint not found!");
-    }
+      }
 
-    const [updateUser] = await this.database.query(
+      const [updateUser] = await this.database.query(
         `SELECT digi_point FROM ${this.table} WHERE id = ?`,
         [id]
-        );
-    return updateUser[0];
-    }catch(error){
-        console.error("Error on updateDigiPoint!", error);
+      );
+      return updateUser[0];
+    } catch (error) {
+      console.error("Error on updateDigiPoint!", error);
+      throw error;
     }
   }
   /* ******************************* Delete ****************************** */
