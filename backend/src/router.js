@@ -47,6 +47,8 @@ router.get("/user/date", userControllers.readDate);
 router.get("/user/:id", userControllers.read);
 // Put
 router.put("/user/:id", userMiddleware, userControllers.edit);
+router.put("/user/digipoint/:id", userControllers.editDigiPoint);
+router.put("/user/password/:id", hashPassword, authControllers.editPassword);
 // Delete
 router.delete("/user/:id", userControllers.deleteUser);
 
@@ -63,7 +65,7 @@ router.post("/message", messageMiddleware, messageControllers.add);
 router.get("/message", messageControllers.browse);
 router.get("/message/:id", messageControllers.read);
 // Put
-router.put("/message/:id", messageControllers.edit);
+router.put("/message/:id", messageMiddleware, messageControllers.edit);
 // Delete
 router.delete("/message/user/:id", messageControllers.destroyUser);
 router.delete("/message/:id", messageControllers.destroyMessage);

@@ -141,6 +141,27 @@ class UsersManager extends AbstractManager {
       throw error;
     }
   }
+
+  async editPassword(id, password) {
+    try {
+      const [result] = await this.database.query(
+        `UPDATE ${this.table} SET password = ? WHERE id = ?`,
+        [password, id]
+      );
+      if (result.affectedRows === 0) {
+        throw new Error("Password not found!");
+      }
+
+      const [updateUser] = await this.database.query(
+        `SELECT password FROM ${this.table} WHERE id = ?`,
+        [id]
+      );
+      return updateUser[0];
+    } catch (error) {
+      console.error("Error on editPassword!", error);
+      throw error;
+    }
+  }
   /* ******************************* Delete ****************************** */
 
   async delete(id) {
