@@ -1,4 +1,4 @@
-const { joi } = require("joi");
+const joi = require("joi");
 
 const MessageSchema = joi.object({
   title: joi.string().alphanum().min(3).max(30).required(),
