@@ -4,7 +4,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const user = await tables.user.readAll();
+    const user = await tables.users.readAll();
 
     res.json(user);
   } catch (err) {
@@ -14,7 +14,7 @@ const browse = async (req, res, next) => {
 
 const readAllUsers = async (req, res, next) => {
   try {
-    const users = await tables.user.readAllUsers();
+    const users = await tables.users.readAllUsers();
     if (users.length === 0) {
       res.status(404).json({ message: "No users found" });
     } else {
@@ -27,7 +27,7 @@ const readAllUsers = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const users = await tables.user.read(req.params.id);
+    const users = await tables.users.read(req.params.id);
 
     if (users == null) {
       res.sendStatus(404).json({ message: "User not found" });
@@ -41,7 +41,7 @@ const read = async (req, res, next) => {
 const readUser = async (req, res, next) => {
   try {
     const { name } = await req.query;
-    const users = await tables.user.getByUsername(name);
+    const users = await tables.users.getByUsername(name);
 
     if (users == null) {
       res.sendStatus(404).json({ message: "User not found" });
@@ -56,7 +56,7 @@ const readUser = async (req, res, next) => {
 const readDate = async (req, res, next) => {
   try {
     const { registerDate } = await req.query;
-    const users = await tables.user.readDate(registerDate);
+    const users = await tables.users.readDate(registerDate);
 
     if (users == null) {
       res.sendStatus(404).json({ message: "User not found" });
@@ -75,7 +75,7 @@ const add = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
-    const newUser = await tables.user.create({
+    const newUser = await tables.users.create({
       username,
       email,
       password,
@@ -99,7 +99,7 @@ const edit = async (req, res) => {
 
     const { username, email, description } = req.body;
 
-    const haveUser = await tables.user.read(id);
+    const haveUser = await tables.users.read(id);
 
     if (!haveUser) {
       return res.status(404).json({ message: "user not found" });
@@ -117,13 +117,13 @@ const edit = async (req, res) => {
       updatedFields.description = description;
     }
 
-    const affectedRows = await tables.user.update(id, updatedFields);
+    const affectedRows = await tables.users.update(id, updatedFields);
 
     if (affectedRows === 0) {
       return res.status(500).json({ message: "Update fail" });
     }
 
-    const editeduser = await tables.user.read(id);
+    const editeduser = await tables.users.read(id);
     return res.json({ message: "Success Update", user: editeduser });
   } catch (err) {
     return res.status(500).json({ message: "Error on user update" });
@@ -138,7 +138,7 @@ const editDigiPoint = async (req, res) => {
     const { id } = req.params;
     const { digiPoint } = req.body;
 
-    const affectedRows = await tables.digimons.update(id, digiPoint);
+    const affectedRows = await tables.users.updateDigiPoint(id, digiPoint);
 
     if (affectedRows === 0) {
       res.status(500).json({ message: "Update fail" });
@@ -157,7 +157,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    await tables.user.delete(id);
+    await tables.users.delete(id);
 
     res.sendStatus(204).json({ message: "User deleted" });
   } catch (err) {
