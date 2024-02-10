@@ -11,6 +11,10 @@ export default function userReducer(state = initalState, action) {
       return action.payload;
     case "GET_USERS_ONE":
       return action.payload;
+    case "ADD_USER":
+      return [action.payload, ...state];
+    case "LOGIN_USER":
+      return action.payload;
     default:
       return state;
   }
