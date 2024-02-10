@@ -7,7 +7,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await tables.users.readEmail(email);
 
-    if (!user) {
+    if (user == null) {
       res.status(401).json({ error: "Email not found" });
       return;
     }
@@ -35,7 +35,7 @@ const login = async (req, res) => {
 
       const token = await jwt.sign(
         { id: user.id, isAdmin: user.is_admin },
-        process.env.JWT_SECRET,
+        process.env.APP_SECRET,
         {
           expiresIn: "1h",
         }
@@ -46,6 +46,7 @@ const login = async (req, res) => {
       res.status(200).json({
         message: "Login successful",
         token,
+        user,
       });
     }
   } catch (error) {
