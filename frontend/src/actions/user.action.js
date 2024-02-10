@@ -1,4 +1,5 @@
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export const GET_USERS = "GET_USERS";
 export const GET_ALL_USERS = "GET_ALL_USERS";
@@ -30,14 +31,56 @@ export const getAllUsers = () => {
   };
 };
 
-export const getOneUser = (idUser) => {
+export const getOneUser = () => {
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    throw new Error("No token found");
+  }
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    sessionStorage.removeItem("token");
+    return null;
+  }
   return (dispatch) => {
     return axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${idUser}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${decodedToken.id}`)
       .then((response) => {
         dispatch({
           type: GET_ONE_USERS,
           payload: response.data,
+        });
+      });
+  };
+};
+
+/* ******************************* POST ****************************** */
+
+export const ADD_USER = "ADD_USER";
+
+export const addUser = (postDatas) => {
+  return (dispatch) => {
+    return axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, postDatas)
+      .then(() => {
+        dispatch({
+          type: ADD_USER,
+          payload: postDatas,
+        });
+      });
+  };
+};
+
+export const LOGIN_USER = "LOGIN_USER";
+
+export const login = (postDatas) => {
+  return (dispatch) => {
+    return axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, postDatas)
+      .then((response) => {
+        sessionStorage.setItem("token", response.data.token);
+        dispatch({
+          type: LOGIN_USER,
+          payload: response.data.token,
         });
       });
   };

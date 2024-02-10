@@ -8,11 +8,23 @@ import rootReducer from "./reducers";
 import App from "./App";
 import { getUsers } from "./actions/user.action";
 import { getDigimons } from "./actions/digimon.action";
+import Page from "./pages/Page";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <App />,
+  },
+  {
+    path: "/",
+    element: <Page />,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+      },
+    ],
   },
 ]);
 
