@@ -31,11 +31,7 @@ export const getAllUsers = () => {
   };
 };
 
-export const getOneUser = () => {
-  const token = sessionStorage.getItem("token");
-  if (!token) {
-    throw new Error("No token found");
-  }
+export const getOneUser = (token) => {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     sessionStorage.removeItem("token");
@@ -45,9 +41,10 @@ export const getOneUser = () => {
     return axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${decodedToken.id}`)
       .then((response) => {
+        const [data] = response.data;
         dispatch({
           type: GET_ONE_USERS,
-          payload: response.data,
+          payload: data,
         });
       });
   };
@@ -77,7 +74,6 @@ export const login = (postDatas) => {
     return axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, postDatas)
       .then((response) => {
-        sessionStorage.setItem("token", response.data.token);
         dispatch({
           type: LOGIN_USER,
           payload: response.data.token,
