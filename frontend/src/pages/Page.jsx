@@ -12,8 +12,15 @@ function Page() {
   const user = useSelector((state) => state.userReducer);
 
   useEffect(() => {
-    dispatch(getOneUser(token));
-  }, [dispatch, token]);
+    if (token) {
+      dispatch(getOneUser(token));
+    }
+  }, [token]);
+
+  if (!user) {
+    return <h2 className="loading">Loading...</h2>;
+  }
+
   return (
     <>
       <header>
