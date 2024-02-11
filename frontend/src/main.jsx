@@ -15,11 +15,16 @@ import Collection from "./pages/Collection";
 import ScratchDigimon from "./pages/ScratchDigimon";
 import DigiCrush from "./pages/DigiCrush";
 import CommentSpace from "./pages/CommentSpace";
+import AdminPanel from "./pages/AdminPanel";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <App />,
+  },
+  {
+    path: "/adminPanel",
+    element: <AdminPanel />,
   },
   {
     path: "/",
