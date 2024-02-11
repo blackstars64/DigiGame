@@ -37,7 +37,7 @@ function Page() {
         <Nav />
       </header>
       <main>
-        <Outlet />
+        <Outlet context={{ user }} />
       </main>
       <Footer />
     </>
