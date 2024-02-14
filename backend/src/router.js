@@ -46,7 +46,7 @@ router.get("/user/name", userControllers.readUser);
 router.get("/user/date", userControllers.readDate);
 router.get("/user/:id", userControllers.read);
 // Put
-router.put("/user/:id", userMiddleware, userControllers.edit);
+router.put("/user/:id", userControllers.edit);
 router.put("/user/digipoint/:id", userControllers.editDigiPoint);
 router.put("/user/password/:id", hashPassword, authControllers.editPassword);
 // Delete
