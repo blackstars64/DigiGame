@@ -16,7 +16,13 @@ function App() {
       {!isSignedIn && <SingIn />}
       {isSignedIn && <SignUp handleSignIn={handleSignIn} />}
       <div className="app-img-btn">
-        <img className="app-terriermon" src={terriermon} alt="terriermon" />
+        <picture>
+          <img
+            className="app-terriermon"
+            src={terriermon}
+            alt="Terriermon qui se touche la joue"
+          />
+        </picture>
         {!isSignedIn && (
           <button className="app-btn" type="button" onClick={handleSignIn}>
             Sign up

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import checkHttpStatus from "../utils/checkHttpStatus";
 
 export const GET_USERS = "GET_USERS";
 export const GET_ALL_USERS = "GET_ALL_USERS";
@@ -9,6 +10,7 @@ export const getUsers = () => {
   return (dispatch) => {
     return axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
+      .then(checkHttpStatus)
       .then((response) => {
         dispatch({
           type: GET_USERS,
@@ -22,6 +24,7 @@ export const getAllUsers = () => {
   return (dispatch) => {
     return axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/all`)
+      .then(checkHttpStatus)
       .then((response) => {
         dispatch({
           type: GET_ALL_USERS,
@@ -31,11 +34,7 @@ export const getAllUsers = () => {
   };
 };
 
-export const getOneUser = () => {
-  const token = sessionStorage.getItem("token");
-  if (!token) {
-    throw new Error("No token found");
-  }
+export const getOneUser = (token) => {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     sessionStorage.removeItem("token");
@@ -44,10 +43,12 @@ export const getOneUser = () => {
   return (dispatch) => {
     return axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${decodedToken.id}`)
+      .then(checkHttpStatus)
       .then((response) => {
+        const [data] = response.data;
         dispatch({
           type: GET_ONE_USERS,
-          payload: response.data,
+          payload: data,
         });
       });
   };
@@ -61,6 +62,7 @@ export const addUser = (postDatas) => {
   return (dispatch) => {
     return axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, postDatas)
+      .then(checkHttpStatus)
       .then(() => {
         dispatch({
           type: ADD_USER,
@@ -76,11 +78,29 @@ export const login = (postDatas) => {
   return (dispatch) => {
     return axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, postDatas)
+      .then(checkHttpStatus)
       .then((response) => {
-        sessionStorage.setItem("token", response.data.token);
         dispatch({
           type: LOGIN_USER,
           payload: response.data.token,
+        });
+      });
+  };
+};
+
+/* ******************************* PUT ****************************** */
+
+export const UPDATE_USER = "UPDATE_USER";
+
+export const updateUser = (id, postDatas) => {
+  return (dispatch) => {
+    return axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}`, postDatas)
+      .then(checkHttpStatus)
+      .then(() => {
+        dispatch({
+          type: UPDATE_USER,
+          payload: postDatas,
         });
       });
   };
