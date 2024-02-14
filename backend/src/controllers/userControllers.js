@@ -97,7 +97,7 @@ const edit = async (req, res) => {
       return res.status(400).json({ message: "Empty body" });
     }
 
-    const { username, email, description } = req.body;
+    const { username, email, description, idImg } = req.body;
 
     const haveUser = await tables.users.read(id);
 
@@ -115,6 +115,9 @@ const edit = async (req, res) => {
     }
     if (description !== undefined) {
       updatedFields.description = description;
+    }
+    if (idImg !== undefined) {
+      updatedFields.profile_img = idImg;
     }
 
     const affectedRows = await tables.users.update(id, updatedFields);

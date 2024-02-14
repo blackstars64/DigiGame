@@ -1,18 +1,20 @@
 const Joi = require("joi");
 
 const userSchema = Joi.object({
-  username: Joi.string().alphanum().min(3).max(30).required(),
+  username: Joi.string().alphanum().min(3).max(15).required(),
   email: Joi.string().email().required(),
   password: Joi.string().pattern(/^[a-zA-Z0-9]{4,30}$/),
+  idImg: Joi.number().integer().min(0).max(5),
 });
 
 const userMiddleware = (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, idImg } = req.body;
   const { error } = userSchema.validate(
     {
       username,
       email,
       password,
+      idImg,
     },
     { abortEarly: false }
   );
