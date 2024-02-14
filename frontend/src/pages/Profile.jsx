@@ -4,13 +4,19 @@ import isEmpty from "../utils/isEmpty";
 import adminPanel from "../assets/admin.png";
 import imgProfile from "../utils/imgProfile";
 import EditPictureProfile from "../components/popups/EditPictureProfile";
+import EditProfile from "../components/popups/EditProfile";
 
 function Profile() {
   const { user } = useOutletContext();
   const [isPopupImg, setIsPopupImg] = useState(false);
+  const [isPopupEdit, setIsPopupEdit] = useState(false);
 
   const handlePopupImg = () => {
     setIsPopupImg(!isPopupImg);
+  };
+
+  const handlePopupEdit = () => {
+    setIsPopupEdit(!isPopupEdit);
   };
 
   return (
@@ -19,6 +25,9 @@ function Profile() {
       <section>
         {isPopupImg && (
           <EditPictureProfile handlePopupImg={handlePopupImg} user={user} />
+        )}
+        {isPopupEdit && (
+          <EditProfile handlePopupImg={handlePopupEdit} user={user} />
         )}
         <div>
           <p>{!isEmpty(user) ? user.username : "No Connected"}</p>
@@ -40,7 +49,9 @@ function Profile() {
               <img src={adminPanel} alt="Admin Panel" />
             </Link>
           )}
-          <button type="button">Edit Profile</button>
+          <button onClick={handlePopupEdit} type="button">
+            Edit Profile
+          </button>
         </div>
       </section>
     </section>

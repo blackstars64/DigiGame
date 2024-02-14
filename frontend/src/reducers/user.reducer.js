@@ -32,6 +32,18 @@ export default function userReducer(state = initalState, action) {
           profile_img: action.payload.idImg,
         };
       }
+      if (
+        action.payload.username &&
+        action.payload.email &&
+        action.payload.description
+      ) {
+        return {
+          ...state,
+          username: action.payload.username,
+          email: action.payload.email,
+          description: action.payload.description,
+        };
+      }
       return state;
 
     default:
