@@ -87,3 +87,21 @@ export const login = (postDatas) => {
       });
   };
 };
+
+/* ******************************* PUT ****************************** */
+
+export const UPDATE_USER = "UPDATE_USER";
+
+export const updateUser = (id, postDatas) => {
+  return (dispatch) => {
+    return axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}`, postDatas)
+      .then(checkHttpStatus)
+      .then(() => {
+        dispatch({
+          type: UPDATE_USER,
+          payload: postDatas,
+        });
+      });
+  };
+};

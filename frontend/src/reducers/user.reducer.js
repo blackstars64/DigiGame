@@ -5,6 +5,7 @@ import {
   ADD_USER,
   LOGIN_USER,
   GET_ONE_USERS,
+  UPDATE_USER,
 } from "../actions/user.action";
 
 const initalState = {};
@@ -24,6 +25,15 @@ export default function userReducer(state = initalState, action) {
       return state;
     case GET_ONE_USERS:
       return action.payload;
+    case UPDATE_USER:
+      if (action.payload.idImg) {
+        return {
+          ...state,
+          profile_img: action.payload.idImg,
+        };
+      }
+      return state;
+
     default:
       return state;
   }
