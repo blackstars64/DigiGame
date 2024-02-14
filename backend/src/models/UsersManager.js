@@ -38,7 +38,7 @@ class UsersManager extends AbstractManager {
   async read(id) {
     try {
       const [result] = await this.database.query(
-        `select id, username, email, description, register_date, is_admin, digi_point from ${this.table} where id LIKE ?`,
+        `select id, username, email, description, register_date, is_admin, digi_point, profile_img from ${this.table} where id LIKE ?`,
         [id]
       );
       return result;
@@ -64,7 +64,7 @@ class UsersManager extends AbstractManager {
   async readAll() {
     try {
       const [result] = await this.database.query(
-        `select id, username, email, description, register_date, is_admin, digi_point from ${this.table}`
+        `select id, username, email, description, register_date, is_admin, digi_point, profile_img from ${this.table}`
       );
       return result;
     } catch (error) {
@@ -98,7 +98,7 @@ class UsersManager extends AbstractManager {
   /* ******************************* Update ****************************** */
 
   async update(id, updatesFields) {
-    const allowedFields = ["username", "email", "description"];
+    const allowedFields = ["username", "email", "description", "profile_img"];
 
     const fieldsToUpdate = Object.keys(updatesFields).filter((field) =>
       allowedFields.includes(field)
