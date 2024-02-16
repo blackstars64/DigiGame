@@ -2,50 +2,19 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import checkHttpStatus from "../utils/checkHttpStatus";
 
-export const GET_USERS = "GET_USERS";
-export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_ONE_USERS = "GET_ONE_USERS";
 
-export const getUsers = () => {
-  return (dispatch) => {
-    return axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
-      .then(checkHttpStatus)
-      .then((response) => {
-        dispatch({
-          type: GET_USERS,
-          payload: response.data,
-        });
-      });
-  };
-};
-
-export const getAllUsers = () => {
-  return (dispatch) => {
-    return axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/all`)
-      .then(checkHttpStatus)
-      .then((response) => {
-        dispatch({
-          type: GET_ALL_USERS,
-          payload: response.data,
-        });
-      });
-  };
-};
+/* ******************************* GET ****************************** */
 
 export const getOneUser = (token) => {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    sessionStorage.removeItem("token");
-    return null;
-  }
   return (dispatch) => {
+    const decodedToken = jwtDecode(token);
     return axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${decodedToken.id}`)
       .then(checkHttpStatus)
       .then((response) => {
         const [data] = response.data;
+        // Dispatch action to update user data in the state
         dispatch({
           type: GET_ONE_USERS,
           payload: data,
@@ -84,6 +53,7 @@ export const login = (postDatas) => {
           type: LOGIN_USER,
           payload: response.data.token,
         });
+        dispatch(getOneUser(response.data.token));
       });
   };
 };
