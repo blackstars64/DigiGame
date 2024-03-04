@@ -11,7 +11,7 @@ const initalState = {};
 export default function userReducer(state = initalState, action) {
   switch (action.type) {
     case ADD_USER:
-      return [action.payload, ...state];
+      return [state];
     case LOGIN_USER:
       if (action.payload) {
         sessionStorage.setItem("token", action.payload);
