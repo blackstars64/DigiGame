@@ -16,6 +16,8 @@ import ScratchDigimon from "./pages/ScratchDigimon";
 import DigiCrush from "./pages/DigiCrush";
 import CommentSpace from "./pages/CommentSpace";
 import AdminPanel from "./pages/AdminPanel";
+import { getAllUsers } from "./actions/allUsers.action";
+import { getFullUsers } from "./actions/fullUsers.action";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +68,8 @@ const store = configureStore({
 });
 
 store.dispatch(getDigimons());
+store.dispatch(getAllUsers());
+store.dispatch(getFullUsers());
 
 root.render(
   <React.StrictMode>
