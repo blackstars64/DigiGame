@@ -24,7 +24,17 @@ function EditUsers({ allUsers }) {
 }
 
 EditUsers.propTypes = {
-  allUsers: propTypes.shape([]).isRequired,
+  allUsers: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.number.isRequired,
+      profile_img: propTypes.number.isRequired,
+      username: propTypes.string.isRequired,
+      email: propTypes.string.isRequired,
+      is_admin: propTypes.number.isRequired,
+      digi_point: propTypes.number.isRequired,
+      register_date: propTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default EditUsers;
