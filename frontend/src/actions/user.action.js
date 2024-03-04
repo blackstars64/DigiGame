@@ -3,6 +3,9 @@ import { jwtDecode } from "jwt-decode";
 import checkHttpStatus from "../utils/checkHttpStatus";
 
 export const GET_ONE_USERS = "GET_ONE_USERS";
+export const ADD_USER = "ADD_USER";
+export const LOGIN_USER = "LOGIN_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
 /* ******************************* GET ****************************** */
 
@@ -25,8 +28,6 @@ export const getOneUser = (token) => {
 
 /* ******************************* POST ****************************** */
 
-export const ADD_USER = "ADD_USER";
-
 export const addUser = (postDatas) => {
   return (dispatch) => {
     return axios
@@ -40,8 +41,6 @@ export const addUser = (postDatas) => {
       });
   };
 };
-
-export const LOGIN_USER = "LOGIN_USER";
 
 export const login = (postDatas) => {
   return (dispatch) => {
@@ -59,8 +58,6 @@ export const login = (postDatas) => {
 };
 
 /* ******************************* PUT ****************************** */
-
-export const UPDATE_USER = "UPDATE_USER";
 
 export const updateUser = (id, postDatas) => {
   return (dispatch) => {
