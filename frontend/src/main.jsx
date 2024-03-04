@@ -18,6 +18,7 @@ import CommentSpace from "./pages/CommentSpace";
 import AdminPanel from "./pages/AdminPanel";
 import { getAllUsers } from "./actions/allUsers.action";
 import { getFullUsers } from "./actions/fullUsers.action";
+import { getFullDigimons } from "./actions/fullDigimon.action";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,7 @@ const store = configureStore({
 store.dispatch(getDigimons());
 store.dispatch(getAllUsers());
 store.dispatch(getFullUsers());
+store.dispatch(getFullDigimons());
 
 root.render(
   <React.StrictMode>
