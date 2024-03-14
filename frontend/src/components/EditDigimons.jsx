@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AddDigimon from "./popups/AddDigimon";
 import EditDigimon from "./popups/EditDigimon";
 import { deleteDigimon } from "../actions/digimon.action";
+import DeleteDigimon from "./popups/DeleteDigimon";
 
 function EditDigimons({ digimons }) {
   const [inputSearch, setInputSearch] = useState("");
@@ -49,6 +50,11 @@ function EditDigimons({ digimons }) {
     setIdBeingEdited(id);
   };
 
+  const handleClickDelete = (id) => {
+    setIsDelete(!isDelete);
+    setIdBeingEdited(id);
+  };
+
   return (
     <section>
       <h2>Edit Digimons</h2>
@@ -84,27 +90,14 @@ function EditDigimons({ digimons }) {
                     setIsEdit={setIsEdit}
                   />
                 )}
-                {isDelete && (
-                  <div>
-                    <p>Are you sure you want to delete this digimon?</p>
-                    <button
-                      onClick={() => {
-                        setIsDelete(false);
-                      }}
-                      type="button"
-                    >
-                      No
-                    </button>
-                    <button
-                      onClick={() => {
-                        setIsDelete(false);
-                        dispatch(deleteDigimon(digimon.id));
-                      }}
-                      type="button"
-                    >
-                      Yes
-                    </button>
-                  </div>
+                {isDelete && idBeingEdited === digimon.id && (
+                  <DeleteDigimon
+                    setIsDelete={setIsDelete}
+                    dispatch={dispatch}
+                    deleteDigimon={deleteDigimon}
+                    digimon={digimon}
+                    setIdBeingEdited={setIdBeingEdited}
+                  />
                 )}
               </div>
               <div>
@@ -113,7 +106,7 @@ function EditDigimons({ digimons }) {
                 </button>
                 <button
                   onClick={() => {
-                    setIsDelete(true);
+                    handleClickDelete(digimon.id);
                   }}
                   type="button"
                 >
