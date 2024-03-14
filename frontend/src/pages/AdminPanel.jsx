@@ -12,6 +12,7 @@ function AdminPanel() {
   const [editSection, setEditSection] = useState("null");
   const user = useSelector((state) => state.userReducer);
   const allUsers = useSelector((state) => state.allUsersReducer);
+  const digimons = useSelector((state) => state.digimonReducer);
   const fullUsers = useSelector((state) => state.fullUsersReducer);
   const fullDigimons = useSelector((state) => state.fullDigionsReducer);
   if (!user) {
@@ -30,7 +31,7 @@ function AdminPanel() {
     return <EditUsers allUsers={allUsers} />;
   }
   if (editSection === "digimons") {
-    return <EditDigimons />;
+    return <EditDigimons digimons={digimons} />;
   }
   if (editSection === "messages") {
     return <EditMessages />;
