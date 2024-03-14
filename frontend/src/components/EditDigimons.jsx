@@ -1,7 +1,9 @@
 import propTypes from "prop-types";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import AddDigimon from "./popups/AddDigimon";
 import EditDigimon from "./popups/EditDigimon";
+import { deleteDigimon } from "../actions/digimon.action";
 
 function EditDigimons({ digimons }) {
   const [inputSearch, setInputSearch] = useState("");
@@ -9,14 +11,20 @@ function EditDigimons({ digimons }) {
   const [isEdit, setIsEdit] = useState(false);
   const [isAdd, setIsAdd] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [idBeingEdited, setIdBeingEdited] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFilteredDigimons(digimons);
+  }, [digimons]);
 
   const handlechange = (e) => {
-    const inputValut = e.target.value
+    const inputValue = e.target.value
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
 
-    setInputSearch(inputValut);
+    setInputSearch(inputValue);
 
     const filtered = digimons.filter((digimon) => {
       return (
@@ -24,16 +32,23 @@ function EditDigimons({ digimons }) {
           .toLowerCase()
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
-          .includes(inputValut) ||
+          .includes(inputValue) ||
         String(digimon.level)
           .toLowerCase()
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
-          .includes(inputValut)
+          .includes(inputValue)
       );
     });
-    setFilteredDigimons(filtered);
+
+    setFilteredDigimons(filtered.length === 0 ? digimons : filtered);
   };
+
+  const handleClick = (id) => {
+    setIsEdit(!isEdit);
+    setIdBeingEdited(id);
+  };
+
   return (
     <section>
       <h2>Edit Digimons</h2>
@@ -61,7 +76,14 @@ function EditDigimons({ digimons }) {
                 <p>{digimon.name}</p>
                 <p>{digimon.level}</p>
                 <p>Card {digimon.id}</p>
-                {isEdit && <EditDigimon digimon={digimon} />}
+                {isEdit && idBeingEdited === digimon.id && (
+                  <EditDigimon
+                    digimon={digimon}
+                    idBeingEdited={idBeingEdited}
+                    setIdBeingEdited={setIdBeingEdited}
+                    setIsEdit={setIsEdit}
+                  />
+                )}
                 {isDelete && (
                   <div>
                     <p>Are you sure you want to delete this digimon?</p>
@@ -76,6 +98,7 @@ function EditDigimons({ digimons }) {
                     <button
                       onClick={() => {
                         setIsDelete(false);
+                        dispatch(deleteDigimon(digimon.id));
                       }}
                       type="button"
                     >
@@ -85,12 +108,7 @@ function EditDigimons({ digimons }) {
                 )}
               </div>
               <div>
-                <button
-                  onClick={() => {
-                    setIsEdit(true);
-                  }}
-                  type="button"
-                >
+                <button onClick={() => handleClick(digimon.id)} type="button">
                   Edit
                 </button>
                 <button
