@@ -2,6 +2,7 @@ import axios from "axios";
 import checkHttpStatus from "../utils/checkHttpStatus";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const DELETE_USER = "DELETE_USER";
 
 export const getAllUsers = () => {
   return (dispatch) => {
@@ -12,6 +13,19 @@ export const getAllUsers = () => {
         dispatch({
           type: GET_ALL_USERS,
           payload: response.data,
+        });
+      });
+  };
+};
+
+export const deleteUser = (id) => {
+  return (dispatch) => {
+    return axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}`)
+      .then(() => {
+        dispatch({
+          type: DELETE_USER,
+          payload: id,
         });
       });
   };
