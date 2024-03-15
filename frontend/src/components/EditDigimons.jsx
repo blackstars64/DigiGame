@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import AddDigimon from "./popups/AddDigimon";
 import EditDigimon from "./popups/EditDigimon";
-import { deleteDigimon, addDigimon } from "../actions/digimon.action";
+import {
+  deleteDigimon,
+  addDigimon,
+  updateDigimon,
+} from "../actions/digimon.action";
 import DeleteDigimon from "./popups/DeleteDigimon";
 
 function EditDigimons({ digimons }) {
@@ -94,6 +98,8 @@ function EditDigimons({ digimons }) {
                     idBeingEdited={idBeingEdited}
                     setIdBeingEdited={setIdBeingEdited}
                     setIsEdit={setIsEdit}
+                    dispatch={dispatch}
+                    updateDigimon={updateDigimon}
                   />
                 )}
                 {isDelete && idBeingEdited === digimon.id && (

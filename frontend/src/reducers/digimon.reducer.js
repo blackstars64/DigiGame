@@ -19,15 +19,12 @@ export default function digimonReducer(state = initalState, action) {
         (digimon) => digimon.id !== Number(action.payload.id)
       );
     case UPDATE_DIGIMON:
-      if (action.payload.name && action.payload.level && action.payload.img) {
-        return {
-          ...state,
-          name: action.payload.name,
-          level: action.payload.level,
-          img: action.payload.img,
-        };
-      }
-      return state;
+      return state.map((digimon) => {
+        if (digimon.id === action.payload.digimon[0].id) {
+          return action.payload.digimon[0];
+        }
+        return digimon;
+      });
     default:
       return state;
   }
