@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import AddDigimon from "./popups/AddDigimon";
 import EditDigimon from "./popups/EditDigimon";
-import { deleteDigimon } from "../actions/digimon.action";
+import { deleteDigimon, addDigimon } from "../actions/digimon.action";
 import DeleteDigimon from "./popups/DeleteDigimon";
 
 function EditDigimons({ digimons }) {
@@ -72,7 +72,13 @@ function EditDigimons({ digimons }) {
       >
         Add
       </button>
-      {isAdd && <AddDigimon />}
+      {isAdd && (
+        <AddDigimon
+          setIsAdd={setIsAdd}
+          dispatch={dispatch}
+          addDigimon={addDigimon}
+        />
+      )}
       <section>
         {filteredDigimons.map((digimon) => {
           return (
