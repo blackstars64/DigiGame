@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import checkHttpStatus from "../utils/checkHttpStatus";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
@@ -23,6 +24,7 @@ export const deleteUser = (id) => {
     return axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}`)
       .then(() => {
+        toast.success("User deleted 🗑️");
         dispatch({
           type: DELETE_USER,
           payload: id,

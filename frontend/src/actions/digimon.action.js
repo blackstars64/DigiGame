@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const GET_DIGIMONS = "GET_DIGIMONS";
 export const ADD_DIGIMON = "ADD_DIGIMON";
@@ -23,6 +24,7 @@ export const addDigimon = (digimon) => {
     return axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/digimons`, digimon)
       .then((response) => {
+        toast.success(`${digimon.name} added successfully 🐸`);
         dispatch({
           type: ADD_DIGIMON,
           payload: response.data.digimon,
@@ -36,6 +38,7 @@ export const deleteDigimon = (idDigimon) => {
     return axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/api/digimons/${idDigimon}`)
       .then((response) => {
+        toast.success("Digimon deleted 🗑️");
         dispatch({
           type: DELETE_DIGIMON,
           payload: response.data,
@@ -52,6 +55,7 @@ export const updateDigimon = (idDigimon, digimon) => {
         digimon
       )
       .then((response) => {
+        toast.success(`${digimon.name} updated successfully 🐉`);
         dispatch({
           type: UPDATE_DIGIMON,
           payload: response.data,
