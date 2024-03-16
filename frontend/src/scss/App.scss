@@ -82,4 +82,9 @@ h1 {
     outline-color: $darkViolet;
     box-shadow: $shadow;
   }
+
+  &::placeholder {
+    color: $deepWhite;
+    text-align: center;
+  }
 }

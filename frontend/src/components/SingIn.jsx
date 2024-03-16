@@ -30,6 +30,7 @@ function SingIn() {
           type="email"
           id="email"
           name="email"
+          placeholder="example@hotmail.com"
           required
         />
         <input
@@ -37,6 +38,7 @@ function SingIn() {
           type="password"
           id="password"
           name="password"
+          placeholder="Password"
           required
         />
         <button className="btn-violet" type="submit">
