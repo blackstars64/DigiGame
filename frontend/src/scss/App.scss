@@ -1,0 +1,85 @@
+@import "../assets/variables.scss";
+
+* {
+  cursor: $cursor;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $comic;
+}
+
+body {
+  background-image: url(../assets/background.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-start {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  .app-terriermon {
+    width: 280px;
+    margin-top: -20px;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: $darkViolet;
+  text-align: center;
+  -webkit-text-stroke: 1px $black;
+  font-family: $techno;
+}
+
+.btn-violet {
+  background-color: $darkViolet;
+  color: $white;
+  border-radius: $br;
+  border: $border;
+  padding: $padding-btn;
+  font-size: 1rem;
+  cursor: $cursorMain;
+  &:hover {
+    box-shadow: $shadow;
+  }
+}
+
+.btn-white {
+  background-color: $deepWhite;
+  color: $darkViolet;
+  border-radius: $br;
+  border: $border;
+  cursor: $cursorMain;
+  padding: $padding-btn;
+  font-size: 1rem;
+}
+
+.textarea {
+  background: $lightGrey;
+  border-radius: $br;
+  border: $border;
+  color: black;
+  padding: $padding-btn;
+
+  &:hover {
+    box-shadow: $shadowLight;
+  }
+
+  &:focus-visible {
+    outline-color: $darkViolet;
+    box-shadow: $shadow;
+  }
+}

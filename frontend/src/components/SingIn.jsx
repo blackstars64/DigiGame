@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../actions/user.action";
+import "../scss/SingIn.scss";
 
 function SingIn() {
   const form = useRef(null);
@@ -21,12 +22,26 @@ function SingIn() {
     navigate("/home");
   };
   return (
-    <section>
-      <h2>Sign In</h2>
-      <form ref={form} onSubmit={(e) => handleSubmit(e)}>
-        <input type="email" id="email" name="email" required />
-        <input type="password" id="password" name="password" required />
-        <button type="submit">Sign In</button>
+    <section className="c-signIn">
+      <h2 className="h-signIn">Sign In</h2>
+      <form className="f-signIn" ref={form} onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className="textarea"
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+        <input
+          className="textarea"
+          type="password"
+          id="password"
+          name="password"
+          required
+        />
+        <button className="btn-violet" type="submit">
+          Sign In
+        </button>
       </form>
     </section>
   );
