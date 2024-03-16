@@ -1,0 +1,32 @@
+@font-face {
+  font-family: technology;
+  src: url(../assets/path/BruceForeverRegular-X3jd2.ttf);
+}
+
+$techno: technology;
+$cursor:
+  url(../assets/path/souris.png) 8 1,
+  auto;
+$cursorMain:
+  url(../assets/path/main.png) 8 0,
+  auto;
+
+$comic: "Comic Sans MS", cursive;
+
+$darkViolet: #58347c;
+$lightViolet: rgba(126, 106, 156, 0.46);
+$lightGrey: #8989898d;
+$grey: #848385;
+$deepWhite: #d9d9d9;
+$white: #fff;
+$black: #000;
+$cardViolet: #3f194d;
+$cardVioletName: #281031;
+$red: #9d1212;
+
+$br: 20px;
+$border: 2px solid $black;
+$padding-btn: 2px 15px;
+$font-sign: 1.6rem;
+$shadow: 0px 0px 5px 1px $black;
+$shadowLight: 0px 0px 2px 0px $white;
