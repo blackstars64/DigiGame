@@ -23,7 +23,7 @@ Welcome to a game where you have to find your favorite Digimon thanks to a scrat
 
 ## Install
 
-- `git clone git@github.com:blackstars64/ScratchDigimon.gitendence` : Clone the repo
+- `git clone git@github.com:blackstars64/DigiGame.git` : Clone the repo
 - `npm install` : installed dependence script
 
 ## Setup
