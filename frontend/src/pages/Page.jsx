@@ -5,6 +5,8 @@ import isEmty from "../utils/isEmpty";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getOneUser } from "../actions/user.action";
+import "../scss/Page.scss";
+import imgProfile from "../utils/imgProfile";
 
 function Page() {
   const dispatch = useDispatch();
@@ -22,15 +24,23 @@ function Page() {
   }
 
   return (
-    <>
+    <section className="page">
       <header>
-        <div>
+        <div className="c-page-profile">
           <picture>
-            <img src="" alt="" />
+            <img
+              className="p-img-profile"
+              src={imgProfile(user.profile_img)}
+              alt="profile"
+            />
           </picture>
           <div>
-            <p>{!isEmty(user) ? user.username : "No Connected"}</p>
-            <p>DP: {!isEmty(user) ? user.digi_point : "0"}</p>
+            <p className="p-p-profile">
+              {!isEmty(user) ? user.username : "No Connected"}
+            </p>
+            <p className="p-p-profile">
+              DP: {!isEmty(user) ? user.digi_point : "0"}
+            </p>
           </div>
         </div>
 
@@ -40,7 +50,7 @@ function Page() {
         <Outlet context={{ user }} />
       </main>
       <Footer />
-    </>
+    </section>
   );
 }
 

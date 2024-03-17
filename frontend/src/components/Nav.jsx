@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import patamon from "../assets/patamon.png";
 import digivice from "../assets/digivice.png";
+import "../scss/Nav.scss";
 
 function Nav() {
   const [isClicked, setIsClicked] = useState(false);
@@ -16,7 +17,7 @@ function Nav() {
           className="menu_patamon"
           onClick={() => toggleNav()}
         >
-          <img src={patamon} alt="menu burger" />
+          <img className="n-img-patamon" src={patamon} alt="menu burger" />
         </button>
       ) : (
         <button
@@ -24,13 +25,17 @@ function Nav() {
           className="menu_digivice"
           onClick={() => toggleNav()}
         >
-          <img src={digivice} alt="close menu burger" />
+          <img
+            className="n-img-digivice"
+            src={digivice}
+            alt="close menu burger"
+          />
         </button>
       )}
 
       {isClicked && (
-        <ul>
-          <li>
+        <ul className="p-ul">
+          <li className="p-li">
             <Link
               to="/home"
               onClick={() => {
@@ -41,7 +46,7 @@ function Nav() {
               Home
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/scratchDigimon"
               onClick={() => {
@@ -52,7 +57,7 @@ function Nav() {
               ScratchDigimon
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/digiCrush"
               onClick={() => {
@@ -63,7 +68,7 @@ function Nav() {
               DigiCrush
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/collection"
               onClick={() => {
@@ -74,7 +79,7 @@ function Nav() {
               Collections
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/profile"
               onClick={() => {
@@ -85,7 +90,7 @@ function Nav() {
               Profile
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/commentSpace"
               onClick={() => {
@@ -96,7 +101,7 @@ function Nav() {
               Comment Space
             </Link>
           </li>
-          <li>
+          <li className="p-li">
             <Link
               to="/"
               onClick={() => {

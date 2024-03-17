@@ -1,0 +1,50 @@
+@import "../assets/variables.scss";
+
+.c-e-d {
+  width: 95vw;
+  margin-top: 1.5rem;
+  .e-d-input {
+    margin: 10px 0 2px;
+  }
+  .c-e-d-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    .e-d-btn {
+      color: $red;
+      font-weight: 900;
+    }
+  }
+  .e-d-allCard {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    .e-d-card {
+      display: flex;
+      background-color: $deepWhite;
+      border: $border;
+      padding: 5px;
+      justify-content: space-between;
+      .e-d-cardImg {
+        width: 70px;
+        height: 70px;
+        border: $border;
+        box-shadow: $shadow;
+      }
+      .e-d-card-c-p {
+        .e-d-card-p {
+          text-align: center;
+        }
+      }
+      .e-d-card-c-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .e-d-card-btn {
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+  }
+}
