@@ -53,9 +53,11 @@
     .profile-text {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       .profile-desc {
         text-align: left;
+        margin-left: 0.5rem;
       }
 
       .textarea-p {

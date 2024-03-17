@@ -31,15 +31,36 @@ function EditProfile({ handlePopupImg, user }) {
   };
 
   return (
-    <section>
-      <h2>Edit Profile</h2>
-      <form ref={form} onSubmit={(e) => handleForm(e)}>
-        <input type="text" id="username" defaultValue={user.username} />
-        <input type="email" id="email" defaultValue={user.email} />
-        <input type="text" id="description" defaultValue={user.description} />
+    <section className="c-popup">
+      <h2 className="popup-h">Edit Profile</h2>
+      <form className="popup-f" ref={form} onSubmit={(e) => handleForm(e)}>
+        <input
+          className="textarea"
+          type="text"
+          id="username"
+          defaultValue={user.username}
+          required
+        />
+        <input
+          className="textarea"
+          type="email"
+          id="email"
+          defaultValue={user.email}
+          required
+        />
+        <textarea
+          required
+          className="textarea popup-desc"
+          type="text"
+          id="description"
+          defaultValue={user.description}
+          maxLength="170"
+        />
         <div>
-          <button type="submit">Validate</button>
-          <button onClick={handlePopupImg} type="button">
+          <button className="btn-white" type="submit">
+            Validate
+          </button>
+          <button className="btn-white" onClick={handlePopupImg} type="button">
             Cancel
           </button>
         </div>

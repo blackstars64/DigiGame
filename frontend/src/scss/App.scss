@@ -92,3 +92,79 @@ h1 {
     text-align: center;
   }
 }
+
+.loading {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  background-color: $lightGrey;
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $darkViolet;
+  border: $border;
+  border-radius: $br;
+  padding: $padding-box;
+  outline: $popupBack;
+  transition: $popupTransition;
+  -webkit-transition: $popupTransition;
+  -moz-transition: $popupTransition;
+  .popup-h {
+    text-align: center;
+    font-size: $font-sign;
+    color: $white;
+  }
+  .popup-f {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    width: 100%;
+    .popup-l {
+      color: $white;
+    }
+    .popup-c-btn {
+      display: flex;
+      gap: 1rem;
+    }
+    .popup-desc {
+      height: 18vh;
+      width: 100%;
+      text-wrap: pretty;
+    }
+  }
+}
+
+.c-delete {
+  position: sticky;
+  background-color: $grey;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border: $border;
+  border-radius: $br;
+  gap: 0.5rem;
+
+  .delete-p {
+    color: $red;
+    font-size: 0.9rem;
+    font-weight: 900;
+  }
+  .delete-btn {
+    color: $red;
+  }
+}

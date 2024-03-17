@@ -38,22 +38,38 @@ function EditDigimon({
   };
 
   return (
-    <section>
-      <h2>Edit Digimon</h2>
-      <form ref={form} onSubmit={(e) => handleForm(e)}>
-        <label htmlFor="name">
+    <section className="c-popup">
+      <h2 className="popup-h">Edit Digimon</h2>
+      <form className="popup-f" ref={form} onSubmit={(e) => handleForm(e)}>
+        <label className="popup-l" htmlFor="name">
           Name:
-          <input type="text" id="name" defaultValue={digimon.name} />
+          <input
+            className="textarea"
+            type="text"
+            id="name"
+            defaultValue={digimon.name}
+          />
         </label>
-        <label htmlFor="level">
+        <label className="popup-l" htmlFor="level">
           Level:
-          <input type="text" id="level" defaultValue={digimon.level} />
+          <input
+            className="textarea"
+            type="text"
+            id="level"
+            defaultValue={digimon.level}
+          />
         </label>
-        <label htmlFor="img">
+        <label className="popup-l" htmlFor="img">
           Image:
-          <input type="text" id="img" defaultValue={digimon.img} />
+          <input
+            className="textarea"
+            type="text"
+            id="img"
+            defaultValue={digimon.img}
+          />
         </label>
         <button
+          className="btn-white"
           onClick={() => {
             setIdBeingEdited(null);
             setIsEdit(false);
@@ -62,7 +78,9 @@ function EditDigimon({
         >
           Cancel
         </button>
-        <button type="submit">Save</button>
+        <button className="btn-white" type="submit">
+          Save
+        </button>
       </form>
     </section>
   );

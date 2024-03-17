@@ -8,27 +8,31 @@ function DeleteDigimon({
   digimon,
 }) {
   return (
-    <section>
-      <p>Are you sure you want to delete this digimon?</p>
-      <button
-        onClick={() => {
-          setIsDelete(false);
-          setIdBeingEdited(null);
-        }}
-        type="button"
-      >
-        No
-      </button>
-      <button
-        onClick={() => {
-          setIsDelete(false);
-          dispatch(deleteDigimon(digimon.id));
-          setIdBeingEdited(null);
-        }}
-        type="button"
-      >
-        Yes
-      </button>
+    <section className="c-delete">
+      <p className="delete-p">Are you sure you want to delete this digimon?</p>
+      <div className="delete-c-btn">
+        <button
+          className="btn-white delete-btn"
+          onClick={() => {
+            setIsDelete(false);
+            setIdBeingEdited(null);
+          }}
+          type="button"
+        >
+          No
+        </button>
+        <button
+          className="btn-white delete-btn "
+          onClick={() => {
+            setIsDelete(false);
+            dispatch(deleteDigimon(digimon.id));
+            setIdBeingEdited(null);
+          }}
+          type="button"
+        >
+          Yes
+        </button>
+      </div>
     </section>
   );
 }

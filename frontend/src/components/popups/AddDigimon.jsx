@@ -18,13 +18,29 @@ function AddDigimon({ setIsAdd, dispatch, addDigimon }) {
     setIsAdd(false);
   };
   return (
-    <section>
-      <h2>Add Digimon</h2>
-      <form ref={form} onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" id="name" placeholder="Name" />
-        <input type="text" id="level" placeholder="Level" />
-        <input type="text" id="img" placeholder="Image" />
-        <button type="submit">Add</button>
+    <section className="c-popup">
+      <h2 className="popup-h">Add Digimon</h2>
+      <form className="popup-f" ref={form} onSubmit={(e) => handleSubmit(e)}>
+        <input className="textarea" type="text" id="name" placeholder="Name" />
+        <input
+          className="textarea"
+          type="text"
+          id="level"
+          placeholder="Level"
+        />
+        <input className="textarea" type="text" id="img" placeholder="Image" />
+        <div className="popup-c-btn">
+          <button
+            className="btn-white"
+            onClick={() => setIsAdd(false)}
+            type="button"
+          >
+            Cancel
+          </button>
+          <button className="btn-white" type="submit">
+            Add
+          </button>
+        </div>
       </form>
     </section>
   );

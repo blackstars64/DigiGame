@@ -9,6 +9,9 @@ import {
   updateDigimon,
 } from "../actions/digimon.action";
 import DeleteDigimon from "./popups/DeleteDigimon";
+import "../scss/EditDigimons.scss";
+import editImg from "../assets/edit.png";
+import trashImg from "../assets/trash.png";
 
 function EditDigimons({ digimons }) {
   const [inputSearch, setInputSearch] = useState("");
@@ -60,22 +63,26 @@ function EditDigimons({ digimons }) {
   };
 
   return (
-    <section>
-      <h2>Edit Digimons</h2>
+    <section className="c-e-d">
+      <h2 className="h1">Edit Digimons</h2>
       <input
+        className="textarea e-d-input"
         type="search"
         value={inputSearch}
         placeholder="Find a digimon"
         onChange={handlechange}
       />
-      <button
-        onClick={() => {
-          setIsAdd(true);
-        }}
-        type="button"
-      >
-        Add
-      </button>
+      <div className="c-e-d-btn">
+        <button
+          className="btn-white e-d-btn"
+          onClick={() => {
+            setIsAdd(true);
+          }}
+          type="button"
+        >
+          Add
+        </button>
+      </div>
       {isAdd && (
         <AddDigimon
           setIsAdd={setIsAdd}
@@ -83,15 +90,17 @@ function EditDigimons({ digimons }) {
           addDigimon={addDigimon}
         />
       )}
-      <section>
+      <section className="e-d-allCard">
         {filteredDigimons.map((digimon) => {
           return (
-            <div key={digimon.id}>
-              <img src={digimon.img} alt="pitcture" />
-              <div>
-                <p>{digimon.name}</p>
-                <p>{digimon.level}</p>
-                <p>Card {digimon.id}</p>
+            <div key={digimon.id} className="e-d-card">
+              <picture>
+                <img className="e-d-cardImg" src={digimon.img} alt="pitcture" />
+              </picture>
+              <div className="e-d-card-c-p">
+                <p className="e-d-card-p">{digimon.name}</p>
+                <p className="e-d-card-p">{digimon.level}</p>
+                <p className="e-d-card-p">Card {digimon.id}</p>
                 {isEdit && idBeingEdited === digimon.id && (
                   <EditDigimon
                     digimon={digimon}
@@ -112,17 +121,26 @@ function EditDigimons({ digimons }) {
                   />
                 )}
               </div>
-              <div>
-                <button onClick={() => handleClick(digimon.id)} type="button">
-                  Edit
+              <div className="e-d-card-c-btn">
+                <button
+                  className="e-d-card-btn"
+                  onClick={() => handleClick(digimon.id)}
+                  type="button"
+                >
+                  <picture>
+                    <img src={editImg} alt="edit" />
+                  </picture>
                 </button>
                 <button
+                  className="e-d-card-btn"
                   onClick={() => {
                     handleClickDelete(digimon.id);
                   }}
                   type="button"
                 >
-                  Delete
+                  <picture>
+                    <img src={trashImg} alt="trash" />
+                  </picture>
                 </button>
               </div>
             </div>

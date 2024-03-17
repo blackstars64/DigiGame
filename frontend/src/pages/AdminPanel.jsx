@@ -7,6 +7,7 @@ import isEmpty from "../utils/isEmpty";
 import EditUsers from "../components/EditUsers";
 import EditMessages from "../components/EditMessages";
 import EditDigimons from "../components/EditDigimons";
+import "../scss/AdminPanel.scss";
 
 function AdminPanel() {
   const [editSection, setEditSection] = useState("null");
@@ -39,27 +40,44 @@ function AdminPanel() {
 
   if (editSection === "null") {
     return (
-      <div>
+      <div className="c-adminP">
         {decoded.isAdmin === 1 && user.is_admin === 1 ? (
-          <section>
-            <h2>Admin Panel</h2>
-            <div>
-              <p>
-                Number of Users: {!isEmpty(fullUsers.id) ? fullUsers.id : "0"}
+          <section className="c-adminP-b">
+            <h2 className="h1">Admin Panel</h2>
+            <div className="c-adminP-stat">
+              <p className="adminP-p">
+                Number of Users:
+                <span className="adminP-span">
+                  {!isEmpty(fullUsers.id) ? fullUsers.id : "0"}
+                </span>
               </p>
-              <p>
-                Number of Digimons:{" "}
-                {!isEmpty(fullDigimons.id) ? fullDigimons.id : "0"}
+              <p className="adminP-p">
+                Number of Digimons:
+                <span className="adminP-span">
+                  {!isEmpty(fullDigimons.id) ? fullDigimons.id : "0"}
+                </span>
               </p>
             </div>
-            <div>
-              <button onClick={() => setEditSection("users")} type="button">
+            <div className="adminP-c-btn">
+              <button
+                className="btn-white adminP-btn"
+                onClick={() => setEditSection("users")}
+                type="button"
+              >
                 Edit Users
               </button>
-              <button onClick={() => setEditSection("digimons")} type="button">
+              <button
+                className="btn-white adminP-btn"
+                onClick={() => setEditSection("digimons")}
+                type="button"
+              >
                 Edit Digimons
               </button>
-              <button onClick={() => setEditSection("messages")} type="button">
+              <button
+                className="btn-white adminP-btn"
+                onClick={() => setEditSection("messages")}
+                type="button"
+              >
                 Edit Messages
               </button>
             </div>
