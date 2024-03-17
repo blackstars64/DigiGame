@@ -1,41 +1,40 @@
-import Counter from "./components/Counter";
-import logo from "./assets/logo.svg";
-
-import "./App.css";
+import { useState } from "react";
+import terriermon from "./assets/terriermon.gif";
+import SingIn from "./components/SingIn";
+import SignUp from "./components/SignUp";
+import "./scss/App.scss";
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const handleSignIn = () => {
+    setIsSignedIn(!isSignedIn);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React !</p>
+    <section className="app-start">
+      <h1> DigiGame </h1>
+      {!isSignedIn && <SingIn />}
+      {isSignedIn && <SignUp handleSignIn={handleSignIn} />}
 
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+      <picture>
+        <img
+          className="app-terriermon"
+          src={terriermon}
+          alt="Terriermon qui se touche la joue"
+        />
+      </picture>
+      {!isSignedIn && (
+        <button className="btn-violet" type="button" onClick={handleSignIn}>
+          Sign up
+        </button>
+      )}
+      {isSignedIn && (
+        <button className="btn-violet" type="button" onClick={handleSignIn}>
+          Sign in
+        </button>
+      )}
+    </section>
   );
 }
 
