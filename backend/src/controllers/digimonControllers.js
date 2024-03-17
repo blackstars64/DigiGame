@@ -80,9 +80,10 @@ const add = async (req, res, next) => {
     if (!newDigimon) {
       res.status(400).json({ message: "Error adding digimon" });
     } else {
-      res
-        .status(201)
-        .json({ message: "Success adding digimon", digimon: newDigimon });
+      res.status(201).json({
+        message: "Success adding digimon",
+        digimon: { id: newDigimon, name, img, level },
+      });
     }
   } catch (err) {
     next(err);
@@ -138,7 +139,7 @@ const deleted = async (req, res) => {
     const { id } = req.params;
     const deletedDigimon = await tables.digimons.delete(id);
     if (deletedDigimon) {
-      res.json({ message: "Digimon deleted" });
+      res.json({ message: "Digimon deleted", id });
     } else {
       res.status(404).json({ message: "Digimon not found" });
     }
