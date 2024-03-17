@@ -23,10 +23,13 @@ $black: #000;
 $cardViolet: #3f194d;
 $cardVioletName: #281031;
 $red: #9d1212;
+$popupBack: 999em solid rgba(0, 0, 0, 0.4);
+$popupTransition: opacity 400ms ease-in;
 
 $br: 20px;
 $border: 2px solid $black;
 $padding-btn: 2px 15px;
+$padding-box: 10px;
 $font-sign: 1.6rem;
 $shadow: 0px 0px 5px 1px $black;
 $shadowLight: 0px 0px 2px 0px $white;

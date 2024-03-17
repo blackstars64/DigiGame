@@ -1,0 +1,114 @@
+@import "../assets/variables.scss";
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .c-profile {
+    background-color: $lightViolet;
+    border: $border;
+    border-radius: $br;
+    padding: $padding-box;
+    display: flex;
+    width: 92%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    .c-profile-h {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      gap: 1rem;
+      .profile-username {
+        font-weight: 900;
+        font-size: 1.5rem;
+      }
+      .profile-btn-img {
+        border: none;
+        background-color: transparent;
+        .profile-img {
+          border-radius: 50px;
+          width: 3.5rem;
+          height: 3.5rem;
+          border: $border;
+          cursor: $cursorMain;
+        }
+      }
+    }
+    .profile-hr {
+      width: 80%;
+      border: $border;
+    }
+    .profile-edit {
+      display: flex;
+      align-items: center;
+      width: 95%;
+      justify-content: space-between;
+      .profile-admin {
+        cursor: $cursorMain;
+      }
+    }
+    .profile-text {
+      display: flex;
+      flex-direction: column;
+
+      .profile-desc {
+        text-align: left;
+      }
+
+      .textarea-p {
+        font-size: 0.8rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+    }
+    .textarea-m {
+      margin: 0 0.5rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.e-picture {
+  position: absolute;
+  margin: 0 0.8rem;
+  background-color: $darkViolet;
+  border: $border;
+  border-radius: $br;
+  padding: $padding-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  outline: $popupBack;
+  transition: $popupTransition;
+  -webkit-transition: $popupTransition;
+  -moz-transition: $popupTransition;
+  .e-picture-c {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    .e-picture-btn {
+      border: none;
+      background-color: transparent;
+      .e-picture-img {
+        border-radius: 50px;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: $border;
+        cursor: $cursorMain;
+        &:hover {
+          box-shadow: $shadow;
+        }
+      }
+    }
+  }
+  .e-picture-hr {
+    width: 50%;
+    border: $border;
+  }
+}

@@ -5,6 +5,7 @@ import adminPanel from "../assets/admin.png";
 import imgProfile from "../utils/imgProfile";
 import EditPictureProfile from "../components/popups/EditPictureProfile";
 import EditProfile from "../components/popups/EditProfile";
+import "../scss/Profile.scss";
 
 function Profile() {
   const { user } = useOutletContext();
@@ -20,36 +21,59 @@ function Profile() {
   };
 
   return (
-    <section>
-      <h2>DigiProfile</h2>
-      <section>
+    <section className="profile">
+      <h2 className="h1">DigiProfile</h2>
+      <section className="c-profile">
         {isPopupImg && (
           <EditPictureProfile handlePopupImg={handlePopupImg} user={user} />
         )}
         {isPopupEdit && (
           <EditProfile handlePopupImg={handlePopupEdit} user={user} />
         )}
-        <div>
-          <p>{!isEmpty(user) ? user.username : "No Connected"}</p>
-          <button onClick={handlePopupImg} type="button">
+        <div className="c-profile-h">
+          <p className="profile-username">
+            {!isEmpty(user) ? user.username : "No Connected"}
+          </p>
+          <button
+            className="profile-btn-img"
+            onClick={handlePopupImg}
+            type="button"
+          >
             <picture>
-              <img src={imgProfile(user.profile_img)} alt="Profile" />
+              <img
+                className="profile-img"
+                src={imgProfile(user.profile_img)}
+                alt="Profile"
+              />
             </picture>
           </button>
         </div>
-        <hr />
-        <div>
-          <p>Description:</p>
-          <p>{!isEmpty(user) ? user.description : "No description yet"}</p>
+        <hr className="profile-hr" />
+        <div className="profile-text">
+          <p className="profile-desc">Description:</p>
+          <p className="textarea textarea-p">
+            {!isEmpty(user) ? user.description : "No description yet"}
+          </p>
         </div>
-        <p>{!isEmpty(user) ? user.email : "No Connected"}</p>
-        <div>
+        <p className="textarea textarea-m ">
+          {!isEmpty(user) ? user.email : "No Connected"}
+        </p>
+        <div className="profile-edit">
           {user.is_admin === 1 && (
-            <Link to="/adminPanel">
-              <img src={adminPanel} alt="Admin Panel" />
+            <Link to="/adminPanel" disabled={isPopupImg || isPopupEdit}>
+              <img
+                className="profile-admin"
+                src={adminPanel}
+                alt="Admin Panel"
+              />
             </Link>
           )}
-          <button onClick={handlePopupEdit} type="button">
+          <button
+            disabled={isPopupImg || isPopupEdit}
+            className="btn-violet"
+            onClick={handlePopupEdit}
+            type="button"
+          >
             Edit Profile
           </button>
         </div>
