@@ -21,6 +21,7 @@ import AdminPanel from "./pages/AdminPanel";
 import { getAllUsers } from "./actions/allUsers.action";
 import { getFullUsers } from "./actions/fullUsers.action";
 import { getFullDigimons } from "./actions/fullDigimon.action";
+import { ScratchPercentProvider } from "./components/contexts/scratchedPercentContext";
 
 const router = createBrowserRouter([
   {
@@ -78,19 +79,21 @@ store.dispatch(getFullDigimons());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <ScratchPercentProvider>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </ScratchPercentProvider>
     </Provider>
   </React.StrictMode>
 );
