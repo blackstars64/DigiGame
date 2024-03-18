@@ -30,8 +30,8 @@
         background-color: transparent;
         .profile-img {
           border-radius: 50px;
-          width: 3.5rem;
-          height: 3.5rem;
+          width: $imgProfile;
+          height: $imgProfile;
           border: $border;
           cursor: $cursorMain;
         }
@@ -99,8 +99,8 @@
       background-color: transparent;
       .e-picture-img {
         border-radius: 50px;
-        width: 3.5rem;
-        height: 3.5rem;
+        width: $imgProfile;
+        height: $imgProfile;
         border: $border;
         cursor: $cursorMain;
         &:hover {
