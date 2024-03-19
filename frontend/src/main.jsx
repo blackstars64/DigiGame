@@ -21,7 +21,8 @@ import AdminPanel from "./pages/AdminPanel";
 import { getAllUsers } from "./actions/allUsers.action";
 import { getFullUsers } from "./actions/fullUsers.action";
 import { getFullDigimons } from "./actions/fullDigimon.action";
-import { ScratchPercentProvider } from "./components/contexts/scratchedPercentContext";
+import { ScratchPercentProvider } from "./contexts/scratchedPercentContext";
+import { DigimonScratchProvider } from "./contexts/digimonScratchContext";
 
 const router = createBrowserRouter([
   {
@@ -79,21 +80,23 @@ store.dispatch(getFullDigimons());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ScratchPercentProvider>
-        <RouterProvider router={router} />
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-      </ScratchPercentProvider>
+      <DigimonScratchProvider>
+        <ScratchPercentProvider>
+          <RouterProvider router={router} />
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+        </ScratchPercentProvider>
+      </DigimonScratchProvider>
     </Provider>
   </React.StrictMode>
 );
