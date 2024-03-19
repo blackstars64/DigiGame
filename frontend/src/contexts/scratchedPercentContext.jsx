@@ -5,10 +5,16 @@ const scratchedPercentContext = createContext();
 
 function ScratchPercentProvider({ children }) {
   const [scrPercent, setScrPercent] = useState(0);
+  const [scrPercentMobile, setScrPercentMobile] = useState(0);
 
   const value = useMemo(
-    () => ({ scrPercent, setScrPercent }),
-    [scrPercent, setScrPercent]
+    () => ({
+      scrPercent,
+      setScrPercent,
+      scrPercentMobile,
+      setScrPercentMobile,
+    }),
+    [scrPercent, setScrPercent, scrPercentMobile, setScrPercentMobile]
   );
 
   return (
