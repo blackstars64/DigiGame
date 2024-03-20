@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import propTypes from "prop-types";
 import { addCollected } from "../actions/collected.action";
+import normalizeString from "../utils/normalizeString";
 
 function SubmitScratch({
   dispatch,
@@ -16,7 +17,7 @@ function SubmitScratch({
     e.preventDefault();
     const digiName = form.current.digiName.value;
 
-    if (digiName === digimon.name) {
+    if (normalizeString(digiName) === normalizeString(digimon.name)) {
       const digiData = {
         id: digimon.id,
         name: digimon.name,
