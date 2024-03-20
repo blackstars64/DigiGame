@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const digimonScratchContext = createContext();
 
 function DigimonScratchProvider({ children }) {
-  const [digimon, setDigimon] = useState([]);
+  const [digimon, setDigimon] = useState({});
 
   const value = useMemo(() => ({ digimon, setDigimon }), [digimon, setDigimon]);
 

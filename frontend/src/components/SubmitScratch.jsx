@@ -1,12 +1,16 @@
 import { useRef } from "react";
 import propTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { updateDigiPoint } from "../actions/user.action";
 import { addCollected } from "../actions/collected.action";
 
-function SubmitScratch({ user, digimon, digiPoints, setGameState }) {
+function SubmitScratch({
+  dispatch,
+  updateDigiPoint,
+  user,
+  digimon,
+  digiPoints,
+  setGameState,
+}) {
   const form = useRef();
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +56,8 @@ SubmitScratch.propTypes = {
   }).isRequired,
   digiPoints: propTypes.number.isRequired,
   setGameState: propTypes.func.isRequired,
+  dispatch: propTypes.func.isRequired,
+  updateDigiPoint: propTypes.func.isRequired,
 };
 
 export default SubmitScratch;

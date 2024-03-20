@@ -2,7 +2,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useContext, useEffect, useState } from "react";
 
 import { useOutletContext } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ScratchCard from "../components/ScratchCard";
 import ReveltCard from "../assets/revelt-card.png";
 import ReveltCardMobile from "../assets/revelt-card-mobile.png";
@@ -12,6 +12,7 @@ import LoseGame from "../components/LoseGame";
 import SubmitScratch from "../components/SubmitScratch";
 import { digimonScratchContext } from "../contexts/digimonScratchContext";
 import Rendomiser from "../services/Rendomiser";
+import { updateDigiPoint } from "../actions/user.action";
 
 function ScratchDigimon() {
   const [gamestate, setGameState] = useState("game");
@@ -20,7 +21,9 @@ function ScratchDigimon() {
   const { setDigimon, digimon } = useContext(digimonScratchContext);
   const touchMedia = useMediaQuery("(max-width: 840px)");
   const dataDigimon = useSelector((state) => state.digimonReducer);
-  const { user } = useOutletContext();
+  const { user, collected } = useOutletContext();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (scrPercent >= 9) {
@@ -36,6 +39,13 @@ function ScratchDigimon() {
 
   useEffect(() => {
     setDigimon(Rendomiser(dataDigimon));
+
+    const isAlreadyCollected =
+      Array.isArray(collected) &&
+      collected.some((data) => data.id === dataDigimon.id);
+    if (isAlreadyCollected) {
+      setDigimon(Rendomiser(dataDigimon));
+    }
   }, [dataDigimon, setDigimon]);
 
   const clickRestart = () => {
@@ -72,6 +82,8 @@ function ScratchDigimon() {
           digimon={digimon}
           setGameState={setGameState}
           user={user}
+          dispatch={dispatch}
+          updateDigiPoint={updateDigiPoint}
         />
       </section>
     );

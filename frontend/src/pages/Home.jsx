@@ -12,7 +12,7 @@ function Home() {
           <br /> Win unique Digimon cards and Digipoints to expand your
           collection. <br /> <br /> Join the Digichat to share experiences and
           connect with fellow fans.
-          <p className="h-p-w">Start your adventure now!</p>
+          <span className="h-p-w">Start your adventure now!</span>
         </p>
         <Link to="/scratchDigimon">
           <button className="btn-violet" type="button">
