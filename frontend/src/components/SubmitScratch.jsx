@@ -17,10 +17,16 @@ function SubmitScratch({
     const digiName = form.current.digiName.value;
 
     if (digiName === digimon.name) {
+      const digiData = {
+        id: digimon.id,
+        name: digimon.name,
+        img: digimon.img,
+        level: digimon.level,
+      };
       const digiPointsWin = digiPoints + user.digi_point;
       const digiCollected = { userId: user.id, digimonId: digimon.id };
       dispatch(updateDigiPoint(user.id, { digiPoint: digiPointsWin }));
-      dispatch(addCollected(digiCollected));
+      dispatch(addCollected(digiCollected, digiData));
       setGameState("win");
     } else {
       setGameState("lose");
@@ -53,6 +59,8 @@ SubmitScratch.propTypes = {
   digimon: propTypes.shape({
     id: propTypes.number,
     name: propTypes.string,
+    img: propTypes.string,
+    level: propTypes.string,
   }).isRequired,
   digiPoints: propTypes.number.isRequired,
   setGameState: propTypes.func.isRequired,

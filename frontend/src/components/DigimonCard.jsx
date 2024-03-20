@@ -6,7 +6,7 @@ function DigimonCard({ digimon }) {
       <div className="c-dc-p">
         <p className="dc-id">{digimon.id}</p>
         <picture>
-          <img src="" alt="" />
+          <img src={digimon.img} alt={digimon.name} />
         </picture>
         <p className="dc-level">{digimon.level}</p>
       </div>
