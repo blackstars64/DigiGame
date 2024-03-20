@@ -16,14 +16,14 @@ export const getUserCollecteds = (idUser) => {
   };
 };
 
-export const addCollected = (postDatas) => {
+export const addCollected = (postDatas, digimonDate) => {
   return (dispatch) => {
     return axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/collected`, postDatas)
       .then(() => {
         dispatch({
           type: ADD_COLLECTED,
-          payload: postDatas,
+          payload: digimonDate,
         });
       });
   };

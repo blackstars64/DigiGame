@@ -8,10 +8,7 @@ export default function collectedReducer(state = initalState, action) {
     case USER_COLLECTEDS:
       return action.payload;
     case ADD_COLLECTED:
-      return {
-        ...state,
-        ...action.payload,
-      };
+      return [...state, action.payload];
     default:
       return state;
   }
