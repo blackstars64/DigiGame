@@ -4,6 +4,7 @@ import { addCollected } from "../actions/collected.action";
 import { updateDigiPoint } from "../actions/user.action";
 import DigimonCard from "../components/DigimonCard";
 import NotFoundCard from "../components/NotFoundCard";
+import "../scss/Collection.scss";
 
 function Collection() {
   const { user, collected } = useOutletContext();
@@ -14,9 +15,14 @@ function Collection() {
     return collected.some((data) => data.id === digimonId);
   };
   return (
-    <section>
+    <section className="c-dCollect">
       <h2 className="h1">DigiCollecte</h2>
-      <input className="textarea" type="search" id="digimon" />
+      <input
+        className="textarea"
+        placeholder="Search you digimon..."
+        type="search"
+        id="digimon"
+      />
       <div className="c-dCollect-card">
         {dataDigimon &&
           dataDigimon.map((digimon) => {

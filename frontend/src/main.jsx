@@ -78,6 +78,13 @@ store.dispatch(getAllUsers());
 store.dispatch(getFullUsers());
 store.dispatch(getFullDigimons());
 store.dispatch(getMessages());
+const fetchMessages = () => {
+  setInterval(() => {
+    store.dispatch(getMessages());
+  }, 20000);
+};
+
+fetchMessages();
 
 root.render(
   <React.StrictMode>

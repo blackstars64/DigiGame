@@ -1,0 +1,27 @@
+@import "../assets/variables.scss";
+
+.win {
+  background: $lightViolet;
+  border: $border;
+  box-shadow: $shadow;
+  border-radius: $br;
+  padding: $padding-box;
+  margin: 0 5px;
+  .wg-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+      font-size: $font-sign;
+    }
+  }
+  .wg-c-bp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    .wg-dp {
+      font-size: $pClamp1rem;
+    }
+  }
+}

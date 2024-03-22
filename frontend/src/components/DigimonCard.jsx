@@ -1,16 +1,23 @@
 import PropTypes from "prop-types";
+import "../scss/DigimonCard.scss";
 
 function DigimonCard({ digimon }) {
   return (
     <section className="dc-background">
       <div className="c-dc-p">
-        <p className="dc-id">{digimon.id}</p>
-        <picture>
-          <img src={digimon.img} alt={digimon.name} />
+        <div className="dc-c-id">
+          <p className="dc-id">{digimon.id}</p>
+        </div>
+        <picture className="dc-c-digiImg">
+          <img className="dc-digiImg" src={digimon.img} alt={digimon.name} />
         </picture>
-        <p className="dc-level">{digimon.level}</p>
+        <div className="dc-c-level">
+          <p className="dc-level">{digimon.level}</p>
+        </div>
       </div>
-      <p className="dc-name">{digimon.name}</p>
+      <div className="dc-c-name">
+        <p className="dc-name">{digimon.name}</p>
+      </div>
     </section>
   );
 }

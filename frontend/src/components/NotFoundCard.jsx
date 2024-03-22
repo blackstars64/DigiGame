@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import propTypes from "prop-types";
 import priceDigimon from "../utils/priceDigimon";
+import "../scss/DigimonCard.scss";
+import digiCoin from "../assets/digiPoint.png";
 
 function NotFoundCard({
   digimon,
@@ -41,16 +43,22 @@ function NotFoundCard({
 
   return (
     <section className="nfound">
-      <p className="nfound-id">{digimon.id}</p>
-      <p className="nfound-name">{digimon.name}</p>
-      <p className="nfound-dp">{priceDigimon(digimon.level)}DP</p>
-      <button
-        type="button"
-        className="nfound-buy"
-        onClick={() => handleBuy(digimon)}
-      >
-        Buy
-      </button>
+      <div className="nfound-c-idName">
+        <p className="nfound-id">{digimon.id}</p>
+        <p className="nfound-name">{digimon.name}</p>
+      </div>
+      <div className="nfound-c-buy">
+        <p className="nfound-dp">{priceDigimon(digimon.level)}DP</p>
+        <button
+          type="button"
+          className="nfound-buy"
+          onClick={() => handleBuy(digimon)}
+        >
+          <picture>
+            <img className="nfound-img" src={digiCoin} alt="digiCoin" />
+          </picture>
+        </button>
+      </div>
     </section>
   );
 }

@@ -13,6 +13,7 @@ import SubmitScratch from "../components/SubmitScratch";
 import { digimonScratchContext } from "../contexts/digimonScratchContext";
 import Rendomiser from "../services/Rendomiser";
 import { updateDigiPoint } from "../actions/user.action";
+import "../scss/ScratchDigimon.scss";
 
 function ScratchDigimon() {
   const [gamestate, setGameState] = useState("game");

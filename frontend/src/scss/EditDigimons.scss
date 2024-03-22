@@ -24,22 +24,25 @@
       background-color: $deepWhite;
       border: $border;
       padding: 5px;
+      align-items: center;
       justify-content: space-between;
       .e-d-cardImg {
-        width: 70px;
-        height: 70px;
+        width: clamp(70px, 12vw, 100px);
+        height: clamp(70px, 12vw, 100px);
         border: $border;
         box-shadow: $shadow;
       }
       .e-d-card-c-p {
         .e-d-card-p {
           text-align: center;
+          font-size: $pClamp1rem;
         }
       }
       .e-d-card-c-btn {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        gap: 0.5rem;
         .e-d-card-btn {
           background: transparent;
           border: none;
