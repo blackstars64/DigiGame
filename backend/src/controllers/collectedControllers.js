@@ -6,6 +6,7 @@ const read = async (req, res, next) => {
   try {
     const id = req.params.idUser;
     const digimon = await table.collected.readDigimonCollected(id);
+
     if (digimon) {
       res.json(digimon);
     } else {

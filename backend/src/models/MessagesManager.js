@@ -10,8 +10,8 @@ class MessagesManager extends AbstractManager {
   async create(message) {
     try {
       const [result] = await this.database.query(
-        `insert into ${this.table} (title, message, user_id, received) values (?,?,?)`,
-        [message.title, message.message, message.userId, message.received]
+        `insert into ${this.table} ( message, users_id, received) values (?,?,?)`,
+        [message.message, message.userId, message.received]
       );
       return result.insertId;
     } catch (error) {
@@ -24,7 +24,10 @@ class MessagesManager extends AbstractManager {
 
   async getAll() {
     try {
-      const [result] = await this.database.query(`select * from ${this.table}`);
+      const [result] = await this.database.query(
+        `select u.username, u.profile_img, m.users_id, m.id, m.message, m.received from ${this.table} AS m
+        INNER JOIN users AS u ON m.users_id = u.id ORDER BY m.id ASC`
+      );
       return result;
     } catch (error) {
       console.error("Error on getAll messages!", error);
