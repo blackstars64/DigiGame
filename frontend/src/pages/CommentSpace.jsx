@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import formatDate from "../utils/formatDate";
 import imgProfile from "../utils/imgProfile";
-import YouComment from "../components/YouComment";
+
 import Comment from "../components/Comment";
 import { addMessage } from "../actions/message.action";
+import "../scss/CommentSpace.scss";
 
 function CommentSpace() {
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.messageReducer);
   const { user } = useOutletContext();
   const form = useRef(null);
+  const messagesEndRef = useRef(null);
 
   const isYouComment = (commentUserId) => {
     return user.id === commentUserId;
@@ -27,31 +29,37 @@ function CommentSpace() {
     form.current.reset();
   };
 
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [comments]);
+
   return (
     <section className="c-cSpace">
       <h2 className="h1">DigiChat</h2>
       <div className="cSpace">
         {comments &&
           comments.map((comment) => {
-            return isYouComment(comment.user_id) ? (
-              <YouComment
-                key={comment.id}
-                comment={comment}
-                imgProfile={imgProfile}
-                formatDate={formatDate}
-                user={user}
-              />
-            ) : (
+            return (
               <Comment
                 key={comment.id}
+                user={user}
                 comment={comment}
                 imgProfile={imgProfile}
                 formatDate={formatDate}
+                messagesEndRef={messagesEndRef}
+                isYouComment={isYouComment}
               />
             );
           })}
       </div>
       <form
+        className="cSpace-form"
         ref={form}
         onSubmit={(e) => {
           handleSubmit(e);

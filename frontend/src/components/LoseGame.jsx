@@ -4,11 +4,11 @@ import terriermon from "../assets/terriermon.gif";
 function LoseGame({ clickRestart, setDigiPoints }) {
   return (
     <>
-      <h2 className="h1">ScratchDigimon</h2>
-      <div>
-        <h2>You Lose</h2>
-        <picture>
-          <img src={terriermon} alt="terriermon" />
+      <h2 className="h1">Scratch Digimon</h2>
+      <div className="c-lg">
+        <h3>You Lose</h3>
+        <picture className="c-lg-terriermon">
+          <img className="lg-terriermon" src={terriermon} alt="terriermon" />
         </picture>
         <button
           className="btn-violet"

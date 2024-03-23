@@ -36,12 +36,18 @@ function SubmitScratch({
   return (
     <section className="c-submitScratch">
       <form
+        className="c-submitScratch-form"
         ref={form}
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <input className="textarea" type="text" id="digiName" />
+        <input
+          className="textarea"
+          placeholder="What the digimon..."
+          type="text"
+          id="digiName"
+        />
         <button className="btn-white" type="submit">
           Validate
         </button>

@@ -25,3 +25,74 @@
     }
   }
 }
+
+.lose {
+  background: $lightViolet;
+  border: $border;
+  box-shadow: $shadow;
+  border-radius: $br;
+  padding: $padding-box;
+  margin: 0 5px;
+  .c-lg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+      font-size: $font-sign;
+    }
+    .c-lg-terriermon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .lg-terriermon {
+        width: clamp(280px, 100%, 770px);
+        margin-top: -30px;
+      }
+    }
+  }
+}
+
+.game {
+  .c-g {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    .g-dp {
+      font-size: $pClamp1rem;
+    }
+    .g-cp {
+      font-size: $pClamp1rem;
+    }
+    .sc-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .s-image {
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        z-index: 0;
+        @media screen and (min-width: 840px) {
+          width: 350px;
+          height: 450px;
+        }
+      }
+      .sc-canvas {
+        position: relative;
+        z-index: 1;
+        border: $border;
+        box-shadow: $shadow;
+      }
+    }
+  }
+}
+
+.c-submitScratch {
+  .c-submitScratch-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+}

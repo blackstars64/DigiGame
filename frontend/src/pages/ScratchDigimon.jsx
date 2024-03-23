@@ -58,11 +58,12 @@ function ScratchDigimon() {
   if (gamestate === "game") {
     return (
       <section className="game">
-        <h2 className="h1">ScratchDigimon</h2>
+        <h2 className="h1">Scratch Digimon</h2>
         <div className="c-g">
           <p className="g-dp">Win: {digiPoints}DP</p>
           {touchMedia ? (
             <ScratchCard
+              className="g-s"
               width={250}
               height={300}
               image={ReveltCardMobile}
@@ -70,6 +71,7 @@ function ScratchDigimon() {
             />
           ) : (
             <ScratchCard
+              className="g-s"
               width={350}
               height={450}
               image={ReveltCard}

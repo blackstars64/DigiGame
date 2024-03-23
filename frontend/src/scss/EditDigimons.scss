@@ -46,6 +46,9 @@
         .e-d-card-btn {
           background: transparent;
           border: none;
+          .e-d-e-img {
+            cursor: $cursorMain;
+          }
         }
       }
     }

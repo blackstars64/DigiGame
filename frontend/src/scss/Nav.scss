@@ -2,6 +2,7 @@
 
 .nav {
   position: fixed;
+  z-index: 1000;
   right: 2px;
   top: 1.5rem;
   background-color: $darkViolet;
