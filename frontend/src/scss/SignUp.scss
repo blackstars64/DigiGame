@@ -5,6 +5,8 @@
   border-radius: $br;
   border: $border;
   padding: 1rem;
+  position: relative;
+  z-index: 1;
   .h-signUp {
     text-align: center;
     color: $white;
