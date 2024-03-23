@@ -4,6 +4,7 @@ export const GET_MESSAGES = "GET_MESSAGES";
 export const GET_USER_MESSAGES = "GET_USER_MESSAGES";
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const UPDATE_MESSAGE = "UPDATE_MESSAGE";
+export const DELETE_MESSAGE = "DELETE_MESSAGE";
 
 export const getMessages = () => {
   return (dispatch) => {
@@ -41,7 +42,12 @@ export const addMessage = (message, username) => {
 
         dispatch({
           type: ADD_MESSAGE,
-          payload: { ...message, received: receivedDate, username },
+          payload: {
+            message: message.message,
+            users_id: message.userId,
+            received: receivedDate,
+            username,
+          },
         });
       });
   };
@@ -58,6 +64,19 @@ export const updateMessage = (message) => {
         dispatch({
           type: UPDATE_MESSAGE,
           payload: response.data,
+        });
+      });
+  };
+};
+
+export const deleteMessage = (id) => {
+  return (dispatch) => {
+    return axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/api/message/${id}`)
+      .then(() => {
+        dispatch({
+          type: DELETE_MESSAGE,
+          payload: id,
         });
       });
   };

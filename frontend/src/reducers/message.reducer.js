@@ -1,5 +1,6 @@
 import {
   ADD_MESSAGE,
+  DELETE_MESSAGE,
   GET_MESSAGES,
   GET_USER_MESSAGES,
 } from "../actions/message.action";
@@ -15,6 +16,8 @@ export default function messageReducer(state = initalState, action) {
       return action.payload;
     case ADD_MESSAGE:
       return [...state, action.payload];
+    case DELETE_MESSAGE:
+      return state.filter((message) => message.id !== Number(action.payload));
     default:
       return state;
   }

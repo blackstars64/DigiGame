@@ -1,0 +1,56 @@
+@import "../assets/variables.scss";
+
+.c-em {
+  width: 95vw;
+  margin-top: 1.5rem;
+  .em-allMessage {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    .em-oneMessage {
+      display: flex;
+      background-color: $deepWhite;
+      border: $border;
+      padding: 5px;
+      align-items: center;
+      justify-content: space-between;
+      .em-cUser {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        .em-username {
+          font-size: clamp(0.8rem, 2vw, 1.2rem);
+          font-weight: 900;
+        }
+        .em-ImgProfile {
+          width: $imgProfile;
+          height: $imgProfile;
+          border: $border;
+          box-shadow: $shadow;
+          border-radius: 50px;
+        }
+      }
+      .em-message {
+        text-align: center;
+        width: clamp(30%, 45%, 80%);
+        font-size: clamp(0.6rem, 2vw, 1rem);
+      }
+      .em-c-btnDate {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        font-size: clamp(0.6rem, 2vw, 1rem);
+        gap: 0.5rem;
+        .em-deleteBtn {
+          background: transparent;
+          border: none;
+          .em-deleteImg {
+            cursor: $cursorMain;
+          }
+        }
+      }
+    }
+  }
+}
