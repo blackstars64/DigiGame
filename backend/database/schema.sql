@@ -19,7 +19,6 @@ CREATE TABLE `users` (
 
 CREATE TABLE `messages` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(50) NOT NULL,
   `message` VARCHAR(255) NOT NULL,
   `received` DATE NOT NULL,
   `users_id` INT

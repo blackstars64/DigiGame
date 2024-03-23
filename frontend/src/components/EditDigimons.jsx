@@ -128,7 +128,7 @@ function EditDigimons({ digimons }) {
                   type="button"
                 >
                   <picture>
-                    <img src={editImg} alt="edit" />
+                    <img className="e-d-e-img" src={editImg} alt="edit" />
                   </picture>
                 </button>
                 <button
@@ -139,7 +139,7 @@ function EditDigimons({ digimons }) {
                   type="button"
                 >
                   <picture>
-                    <img src={trashImg} alt="trash" />
+                    <img className="e-d-e-img" src={trashImg} alt="trash" />
                   </picture>
                 </button>
               </div>

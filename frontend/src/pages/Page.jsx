@@ -7,17 +7,23 @@ import Footer from "../components/Footer";
 import { getOneUser } from "../actions/user.action";
 import "../scss/Page.scss";
 import imgProfile from "../utils/imgProfile";
+import { getUserCollecteds } from "../actions/collected.action";
 
 function Page() {
   const dispatch = useDispatch();
   const token = sessionStorage.getItem("token");
   const user = useSelector((state) => state.userReducer);
+  const collected = useSelector((state) => state.collectedReducer) ?? [];
 
   useEffect(() => {
     if (token) {
       dispatch(getOneUser(token));
     }
   }, [token]);
+
+  useEffect(() => {
+    dispatch(getUserCollecteds(user.id));
+  }, [user.id]);
 
   if (!user) {
     return <h2 className="loading">Loading...</h2>;
@@ -47,7 +53,7 @@ function Page() {
         <Nav />
       </header>
       <main>
-        <Outlet context={{ user }} />
+        <Outlet context={{ user, collected }} />
       </main>
       <Footer />
     </section>

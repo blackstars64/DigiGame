@@ -4,6 +4,7 @@ import {
   LOGIN_USER,
   GET_ONE_USERS,
   UPDATE_USER,
+  UPDATE_DIGIPOINT,
 } from "../actions/user.action";
 
 const initalState = {};
@@ -39,6 +40,11 @@ export default function userReducer(state = initalState, action) {
         };
       }
       return state;
+    case UPDATE_DIGIPOINT:
+      return {
+        ...state,
+        digi_point: action.payload.digiPoint,
+      };
 
     default:
       return state;
