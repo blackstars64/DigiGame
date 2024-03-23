@@ -8,9 +8,10 @@ function DeleteUser({
   setIdBeingEdited,
 }) {
   return (
-    <section>
-      <p>Are you sure you want to delete this user?</p>
+    <section className="c-delete">
+      <p className="delete-p">Are you sure you want to delete this user?</p>
       <button
+        className="btn-white delete-btn"
         onClick={() => {
           setIsDelete(false);
           setIdBeingEdited(null);
@@ -20,6 +21,7 @@ function DeleteUser({
         No
       </button>
       <button
+        className="btn-white delete-btn"
         onClick={() => {
           setIsDelete(false);
           dispatch(deleteUser(idBeingEdited));

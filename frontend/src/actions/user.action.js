@@ -7,6 +7,7 @@ export const GET_ONE_USERS = "GET_ONE_USERS";
 export const ADD_USER = "ADD_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_DIGIPOINT = "UPDATE_DIGIPOINT";
 
 /* ******************************* GET ****************************** */
 
@@ -70,6 +71,23 @@ export const updateUser = (id, postDatas) => {
         toast.success("Profile updated! 🎉");
         dispatch({
           type: UPDATE_USER,
+          payload: postDatas,
+        });
+      });
+  };
+};
+
+export const updateDigiPoint = (id, postDatas) => {
+  return (dispatch) => {
+    return axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/digipoint/${id}`,
+        postDatas
+      )
+      .then(checkHttpStatus)
+      .then(() => {
+        dispatch({
+          type: UPDATE_DIGIPOINT,
           payload: postDatas,
         });
       });

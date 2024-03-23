@@ -16,13 +16,13 @@
     padding: $padding-box;
     width: 92%;
     .h-title {
-      font-size: 2rem;
+      font-size: $font-sign;
       font-weight: 900;
       color: $black;
       text-align: center;
     }
     .h-p {
-      font-size: 1rem;
+      font-size: $pClamp1rem;
       color: $black;
       text-align: center;
       .h-p-w {

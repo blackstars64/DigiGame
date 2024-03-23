@@ -2,6 +2,7 @@
 
 .nav {
   position: fixed;
+  z-index: 1000;
   right: 2px;
   top: 1.5rem;
   background-color: $darkViolet;
@@ -12,8 +13,8 @@
     border: none;
     background-color: transparent;
     .n-img-patamon {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: $widthImgNav;
+      height: $widthImgNav;
       position: fixed;
       right: 1rem;
       top: 1rem;
@@ -21,10 +22,12 @@
   }
   .p-ul {
     .p-li {
+      padding: $padding-btn;
       list-style: none;
       .navbar-li {
         color: $white;
         text-decoration: none;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
         cursor: $cursorMain;
         &:hover {
           text-shadow: 0px 3px 13px $black;
@@ -39,8 +42,8 @@
     border: none;
     background-color: transparent;
     .n-img-digivice {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: $widthImgNav;
+      height: $widthImgNav;
     }
   }
 }

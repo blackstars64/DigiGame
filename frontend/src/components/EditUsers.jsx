@@ -5,6 +5,7 @@ import formatDate from "../utils/formatDate";
 import imgProfile from "../utils/imgProfile";
 import DeleteUser from "./popups/DeleteUser";
 import { deleteUser } from "../actions/allUsers.action";
+import "../scss/EditUsers.scss";
 
 function EditUsers({ allUsers }) {
   const [inputSearch, setInputSearch] = useState("");
@@ -49,40 +50,52 @@ function EditUsers({ allUsers }) {
   };
 
   return (
-    <section>
-      <h2>Edit Users</h2>
+    <section className="c-e-u">
+      <h2 className="h1">Edit Users</h2>
 
       <input
+        className="textarea"
         type="search"
         value={inputSearch}
         placeholder="Find a user"
         onChange={handlechange}
       />
-
-      {filteredUsers.map((user) => {
-        return (
-          <div key={user.id}>
-            <img src={imgProfile(user.profile_img)} alt="pitcture" />
-            <p>{user.username}</p>
-            <p>{user.email}</p>
-            <p>Admin: {user.is_admin === 1 ? "Oui" : "Non"}</p>
-            <p>DigiPoint: {user.digi_point}</p>
-            <p>{formatDate(user.register_date)}</p>
-            {isDelete && idBeingEdited === user.id && (
-              <DeleteUser
-                setIsDelete={setIsDelete}
-                idBeingEdited={idBeingEdited}
-                setIdBeingEdited={setIdBeingEdited}
-                dispatch={dispatch}
-                deleteUser={deleteUser}
+      <section className="e-u-fullCard">
+        {filteredUsers.map((user) => {
+          return (
+            <div className="e-u-card" key={user.id}>
+              <img
+                className="e-u-img"
+                src={imgProfile(user.profile_img)}
+                alt="pitcture"
               />
-            )}
-            <button onClick={() => handleClickDelete(user.id)} type="button">
-              Delete
-            </button>
-          </div>
-        );
-      })}
+              <p className="e-u-p">{user.username}</p>
+              <p className="e-u-p">{user.email}</p>
+              <p className="e-u-p">
+                Admin: {user.is_admin === 1 ? "Oui" : "Non"}
+              </p>
+              <p className="e-u-p">DigiPoint: {user.digi_point}</p>
+              <p className="e-u-p">{formatDate(user.register_date)}</p>
+              {isDelete && idBeingEdited === user.id && (
+                <DeleteUser
+                  setIsDelete={setIsDelete}
+                  idBeingEdited={idBeingEdited}
+                  setIdBeingEdited={setIdBeingEdited}
+                  dispatch={dispatch}
+                  deleteUser={deleteUser}
+                />
+              )}
+              <button
+                className="btn-violet"
+                onClick={() => handleClickDelete(user.id)}
+                type="button"
+              >
+                Delete
+              </button>
+            </div>
+          );
+        })}
+      </section>
     </section>
   );
 }

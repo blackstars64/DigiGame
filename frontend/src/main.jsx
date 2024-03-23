@@ -16,11 +16,14 @@ import Profile from "./pages/Profile";
 import Collection from "./pages/Collection";
 import ScratchDigimon from "./pages/ScratchDigimon";
 import DigiCrush from "./pages/DigiCrush";
-import CommentSpace from "./pages/CommentSpace";
 import AdminPanel from "./pages/AdminPanel";
 import { getAllUsers } from "./actions/allUsers.action";
 import { getFullUsers } from "./actions/fullUsers.action";
 import { getFullDigimons } from "./actions/fullDigimon.action";
+import { ScratchPercentProvider } from "./contexts/scratchedPercentContext";
+import { DigimonScratchProvider } from "./contexts/digimonScratchContext";
+import { getMessages } from "./actions/message.action";
+import CommentSpace from "./pages/CommentSpace";
 
 const router = createBrowserRouter([
   {
@@ -74,23 +77,35 @@ store.dispatch(getDigimons());
 store.dispatch(getAllUsers());
 store.dispatch(getFullUsers());
 store.dispatch(getFullDigimons());
+store.dispatch(getMessages());
+const fetchMessages = () => {
+  setInterval(() => {
+    store.dispatch(getMessages());
+  }, 20000);
+};
+
+fetchMessages();
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <DigimonScratchProvider>
+        <ScratchPercentProvider>
+          <RouterProvider router={router} />
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+        </ScratchPercentProvider>
+      </DigimonScratchProvider>
     </Provider>
   </React.StrictMode>
 );

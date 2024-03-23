@@ -3,7 +3,7 @@ import { fr } from "date-fns/locale";
 
 function formatDate(isoDateString) {
   const date = new Date(isoDateString);
-  const formattedDate = format(date, "dd MMMM yyyy à HH:mm:ss XXXXX", {
+  const formattedDate = format(date, "dd MMMM yyyy ", {
     locale: fr,
   });
   return formattedDate;
