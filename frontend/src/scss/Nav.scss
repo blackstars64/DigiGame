@@ -1,0 +1,49 @@
+@import "../assets/variables.scss";
+
+.nav {
+  position: fixed;
+  z-index: 1000;
+  right: 2px;
+  top: 1.5rem;
+  background-color: $darkViolet;
+  padding: 5px;
+  border: $border;
+  border-radius: $br;
+  .menu_patamon {
+    border: none;
+    background-color: transparent;
+    .n-img-patamon {
+      width: $widthImgNav;
+      height: $widthImgNav;
+      position: fixed;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+  .p-ul {
+    .p-li {
+      padding: $padding-btn;
+      list-style: none;
+      .navbar-li {
+        color: $white;
+        text-decoration: none;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        cursor: $cursorMain;
+        &:hover {
+          text-shadow: 0px 3px 13px $black;
+        }
+      }
+    }
+  }
+}
+
+.navbordernone {
+  .menu_digivice {
+    border: none;
+    background-color: transparent;
+    .n-img-digivice {
+      width: $widthImgNav;
+      height: $widthImgNav;
+    }
+  }
+}

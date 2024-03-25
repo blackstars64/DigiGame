@@ -1,0 +1,120 @@
+@import "../assets/variables.scss";
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .c-profile {
+    background-color: $lightViolet;
+    border: $border;
+    border-radius: $br;
+    padding: $padding-box;
+    display: flex;
+    margin: 0 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    @media screen and (min-width: 630px) {
+      max-width: 55%;
+    }
+    .c-profile-h {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      gap: 1rem;
+      .profile-username {
+        font-weight: 900;
+        font-size: $font-sign;
+      }
+      .profile-btn-img {
+        border: none;
+        background-color: transparent;
+        .profile-img {
+          border-radius: 50px;
+          width: $imgProfile;
+          height: $imgProfile;
+          border: $border;
+          cursor: $cursorMain;
+        }
+      }
+    }
+    .profile-hr {
+      width: 80%;
+      border: $border;
+    }
+    .profile-edit {
+      display: flex;
+      align-items: center;
+      width: 95%;
+      justify-content: space-between;
+      .profile-admin {
+        cursor: $cursorMain;
+        width: clamp(1.5rem, 4vw, 2rem);
+      }
+    }
+    .profile-text {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .profile-desc {
+        text-align: left;
+        margin-left: 0.5rem;
+      }
+
+      .textarea-p {
+        font-size: clamp(0.7rem, 3vw, 1rem);
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+    }
+    .textarea-m {
+      margin: 0 0.5rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.e-picture {
+  position: absolute;
+  margin: 0 0.8rem;
+  background-color: $darkViolet;
+  border: $border;
+  border-radius: $br;
+  padding: $padding-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  outline: $popupBack;
+  transition: $popupTransition;
+  -webkit-transition: $popupTransition;
+  -moz-transition: $popupTransition;
+  .e-picture-c {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    .e-picture-btn {
+      border: none;
+      background-color: transparent;
+      .e-picture-img {
+        border-radius: 50px;
+        width: $imgProfile;
+        height: $imgProfile;
+        border: $border;
+        cursor: $cursorMain;
+        &:hover {
+          box-shadow: $shadow;
+        }
+      }
+    }
+  }
+  .e-picture-hr {
+    width: 50%;
+    border: $border;
+  }
+}

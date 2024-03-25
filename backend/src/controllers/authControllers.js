@@ -19,11 +19,6 @@ const login = async (req, res) => {
       return;
     }
 
-    if (!user.is_admin) {
-      res.status(401).json({ error: "Unauthorized" });
-      return;
-    }
-
     if (isPasswordValid) {
       delete user.password;
       delete user.register_date;

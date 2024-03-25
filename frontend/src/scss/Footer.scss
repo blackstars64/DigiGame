@@ -1,0 +1,44 @@
+@import "../assets/variables.scss";
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $darkViolet;
+  padding: 3px;
+  border-top: 3px solid $black;
+  box-shadow: -1px -1px 11px 0px $black;
+  .footer-link-portfolio {
+    display: flex;
+    align-items: center;
+    color: $white;
+    gap: 0.5rem;
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    text-decoration: none;
+    cursor: $cursorMain;
+
+    .footer-img-portfolio {
+      border-radius: 50px;
+      width: clamp(1.8rem, 4vw, 2.5rem);
+      height: clamp(1.9rem, 4vw, 2.6rem);
+    }
+  }
+  .footer-link {
+    display: flex;
+    gap: 0.4rem;
+    .footer-link-select {
+      color: $white;
+      font-size: clamp(0.8rem, 2vw, 1.1rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: $cursorMain;
+      .footer-link-img {
+        width: $pClamp1rem;
+        height: $pClamp1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../assets/variables.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .h-c-p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: $lightViolet;
+    border: $border;
+    border-radius: $br;
+    padding: $padding-box;
+    width: 92%;
+    .h-title {
+      font-size: $font-sign;
+      font-weight: 900;
+      color: $black;
+      text-align: center;
+    }
+    .h-p {
+      font-size: $pClamp1rem;
+      color: $black;
+      text-align: center;
+      .h-p-w {
+        font-weight: 900;
+      }
+    }
+  }
+}

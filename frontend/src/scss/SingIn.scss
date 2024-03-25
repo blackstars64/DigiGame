@@ -1,0 +1,22 @@
+@import "../assets/variables.scss";
+
+.c-signIn {
+  position: relative;
+  z-index: 2;
+  background-color: $lightViolet;
+  border-radius: $br;
+  border: $border;
+  padding: $padding-box;
+  .h-signIn {
+    color: $black;
+    font-size: $font-sign;
+    text-align: center;
+  }
+  .f-signIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
