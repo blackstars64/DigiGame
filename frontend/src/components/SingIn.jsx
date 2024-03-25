@@ -1,13 +1,15 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../actions/user.action";
 import "../scss/SingIn.scss";
 
 function SingIn() {
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+
   const form = useRef(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,10 +19,22 @@ function SingIn() {
       password: form.current.password.value,
     };
 
-    dispatch(login(postDatas));
-    form.current.reset();
-    navigate("/home");
+    dispatch(login(postDatas))
+      .then((success) => {
+        if (success === true) {
+          navigate("/home");
+        }
+      })
+      .catch(() => {
+        form.current.password.value = "";
+      });
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
   return (
     <section className="c-signIn">
       <h2 className="h-signIn">Sign In</h2>

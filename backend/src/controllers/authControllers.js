@@ -19,32 +19,34 @@ const login = async (req, res) => {
       return;
     }
 
-    if (isPasswordValid) {
-      delete user.password;
-      delete user.register_date;
-      delete user.digi_point;
-      delete user.description;
-      delete user.email;
-      delete user.username;
-      delete user.profile_img;
+    // Si les informations d'identification sont valides, générer le token JWT
+    const token = await jwt.sign(
+      { id: user.id, isAdmin: user.is_admin },
+      process.env.APP_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
 
-      const token = await jwt.sign(
-        { id: user.id, isAdmin: user.is_admin },
-        process.env.APP_SECRET,
-        {
-          expiresIn: "1h",
-        }
-      );
-      delete user.is_admin;
-      delete user.id;
+    // Supprimer les données sensibles de l'utilisateur avant de les renvoyer
+    delete user.password;
+    delete user.register_date;
+    delete user.digi_point;
+    delete user.description;
+    delete user.email;
+    delete user.username;
+    delete user.profile_img;
+    delete user.is_admin;
+    delete user.id;
 
-      res.status(200).json({
-        message: "Login successful",
-        token,
-        user,
-      });
-    }
+    // Renvoyer une réponse avec le token JWT et les données de l'utilisateur
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user,
+    });
   } catch (error) {
+    // Si une erreur se produit, renvoyer une réponse avec un statut 500 et l'erreur
     res.status(500).json({ error: error.message });
   }
 };
