@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../scss/Home.scss";
+import { useEffect } from "react";
 
 function Home() {
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
   return (
     <section className="home">
       <h1>DigiHome</h1>

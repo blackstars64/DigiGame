@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { addCollected } from "../actions/collected.action";
 import { updateDigiPoint } from "../actions/user.action";
 import DigimonCard from "../components/DigimonCard";
@@ -10,6 +11,14 @@ function Collection() {
   const { user, collected } = useOutletContext();
   const dispatch = useDispatch();
   const dataDigimon = useSelector((state) => state.digimonReducer);
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const isCollected = (digimonId) => {
     return collected.some((data) => data.id === digimonId);
