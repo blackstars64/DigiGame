@@ -13,7 +13,7 @@ const digimonControllers = require("./controllers/digimonControllers");
 const collectedControllers = require("./controllers/collectedControllers");
 const messageControllers = require("./controllers/messageControllers");
 const userMiddleware = require("./middlewares/userMiddleware");
-const messageMiddleware = require("./middlewares/messageMiddleware");
+// const messageMiddleware = require("./middlewares/messageMiddleware");
 const { hashPassword, verifyToken } = require("./services/auth");
 
 // Define the API routes
@@ -56,16 +56,16 @@ router.delete("/user/:id", userControllers.deleteUser);
 // Post
 router.post("/collected", collectedControllers.add);
 // Get
-router.get("/collected/:id", collectedControllers.read);
+router.get("/collected/:idUser", collectedControllers.read);
 
 /* ***************************** MESSAGE ************************************** */
 // Post
-router.post("/message", messageMiddleware, messageControllers.add);
+router.post("/message", messageControllers.add);
 // Get
 router.get("/message", messageControllers.browse);
 router.get("/message/:id", messageControllers.read);
 // Put
-router.put("/message/:id", messageMiddleware, messageControllers.edit);
+router.put("/message/:id", messageControllers.edit);
 // Delete
 router.delete("/message/user/:id", messageControllers.destroyUser);
 router.delete("/message/:id", messageControllers.destroyMessage);

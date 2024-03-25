@@ -2,13 +2,12 @@ const tables = require("../tables");
 
 /* ******************************* POST ****************************** */
 
-const add = (req, res, next) => {
+const add = async (req, res, next) => {
   const received = new Date();
-  const { title, message, userId } = req.body;
+  const { message, userId } = req.body;
 
   try {
-    const newMessage = tables.messages.create({
-      title,
+    const newMessage = await tables.messages.create({
       message,
       userId,
       received,
@@ -25,12 +24,12 @@ const add = (req, res, next) => {
 
 /* ******************************* PUT ****************************** */
 
-const edit = (req, res, next) => {
+const edit = async (req, res, next) => {
   const messageId = req.params.id;
   const updatedMessage = req.body;
 
   try {
-    const editedMessage = tables.messages.editMessage(messageId, {
+    const editedMessage = await tables.messages.update(messageId, {
       updatedMessage,
     });
     if (!editedMessage) {
@@ -45,24 +44,24 @@ const edit = (req, res, next) => {
 
 /* ******************************* GET ****************************** */
 
-const browse = (req, res, next) => {
+const browse = async (req, res, next) => {
   try {
-    const messages = tables.messages.browseMessages();
+    const messages = await tables.messages.getAll();
     if (!messages) {
       res.status(404).json({ message: "Messages not found" });
     } else {
-      res.status(200).json(messages);
+      res.json(messages);
     }
   } catch (error) {
     next(error);
   }
 };
 
-const read = (req, res, next) => {
+const read = async (req, res, next) => {
   const userId = req.params.id;
 
   try {
-    const message = tables.messages.readMessage(userId);
+    const message = await tables.messages.getByUserId(userId);
     if (!message) {
       res.status(404).json({ message: "Message not found" });
     } else {
@@ -75,11 +74,11 @@ const read = (req, res, next) => {
 
 /* ******************************* DELETE ****************************** */
 
-const destroyMessage = (req, res, next) => {
-  const messageId = req.params.id;
+const destroyMessage = async (req, res, next) => {
+  const messageId = await req.params.id;
 
   try {
-    tables.messages.delete(messageId);
+    await tables.messages.delete(messageId);
 
     res.status(204).json({ message: "The message is deleted" }).end();
   } catch (error) {
@@ -87,11 +86,11 @@ const destroyMessage = (req, res, next) => {
   }
 };
 
-const destroyUser = (req, res, next) => {
-  const userId = req.params.id;
+const destroyUser = async (req, res, next) => {
+  const userId = await req.params.id;
 
   try {
-    tables.messages.deleteByUserId(userId);
+    await tables.messages.deleteByUserId(userId);
 
     res
       .status(204)
