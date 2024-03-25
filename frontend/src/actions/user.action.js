@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import checkHttpStatus from "../utils/checkHttpStatus";
@@ -46,17 +47,25 @@ export const addUser = (postDatas) => {
 
 export const login = (postDatas) => {
   return (dispatch) => {
-    return axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, postDatas)
-      .then(checkHttpStatus)
-      .then((response) => {
-        toast.success(`Welcome! 👋`);
-        dispatch({
-          type: LOGIN_USER,
-          payload: response.data.token,
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, postDatas)
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            toast.success(`Welcome! 👋`);
+            dispatch({
+              type: LOGIN_USER,
+              payload: response.data.token,
+            });
+            dispatch(getOneUser(response.data.token));
+            resolve(true);
+          }
+        })
+        .catch((error) => {
+          toast.error(`${error.response.data.error}`);
+          reject(new Error(false));
         });
-        dispatch(getOneUser(response.data.token));
-      });
+    });
   };
 };
 

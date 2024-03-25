@@ -24,6 +24,7 @@ import { ScratchPercentProvider } from "./contexts/scratchedPercentContext";
 import { DigimonScratchProvider } from "./contexts/digimonScratchContext";
 import { getMessages } from "./actions/message.action";
 import CommentSpace from "./pages/CommentSpace";
+import Page404 from "./pages/Page404";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
         element: <CommentSpace />,
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <Page404 />,
   },
 ]);
 
