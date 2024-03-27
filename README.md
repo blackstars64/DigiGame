@@ -8,9 +8,11 @@ Welcome to a game where you have to find your favorite Digimon thanks to a scrat
 
 - **Your collection** A collection page where you can see and buy your favorite digimons.
 
+- **Comment Space** A real-time comment area, or even a general chat room.
+
 - **Authentication** Sign up quickly and log in to start playing.
 
-- **Admin** As administrator, you have access to the panel to modify digimons.
+- **Admin** As administrator, you have access to the panel to modify digimons, remove players and messages.
 
 - ### Technologies used:
 
@@ -19,7 +21,9 @@ Welcome to a game where you have to find your favorite Digimon thanks to a scrat
   - **Jsonwebtoken:** Jsonwebtoken is used to manage authentication and game security.
   - **React.js:** The front-end of the game is developed with React.js to deliver an interactive user experience.
   - **Axios:** Axios is used to make HTTP requests between client and server.
+  - **Redux:** Redux is an open-source JavaScript state management library for web applications.
   - **Sass:** Styles are managed with Sass, offering a more modular and organized CSS structure.
+  - **Toastify** React-Toastify allows you to add notifications to your app with ease.
 
 ## Install
 

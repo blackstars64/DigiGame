@@ -1,7 +1,7 @@
 import { useMediaQuery } from "usehooks-ts";
 import { useContext, useEffect, useState } from "react";
 
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ScratchCard from "../components/ScratchCard";
 import ReveltCard from "../assets/revelt-card.png";
@@ -23,6 +23,14 @@ function ScratchDigimon() {
   const touchMedia = useMediaQuery("(max-width: 840px)");
   const dataDigimon = useSelector((state) => state.digimonReducer);
   const { user, collected } = useOutletContext();
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import formatDate from "../utils/formatDate";
 import imgProfile from "../utils/imgProfile";
 
@@ -14,6 +14,14 @@ function CommentSpace() {
   const { user } = useOutletContext();
   const form = useRef(null);
   const messagesEndRef = useRef(null);
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const isYouComment = (commentUserId) => {
     return user.id === commentUserId;
