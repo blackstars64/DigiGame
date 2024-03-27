@@ -15,7 +15,6 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Collection from "./pages/Collection";
 import ScratchDigimon from "./pages/ScratchDigimon";
-import DigiCrush from "./pages/DigiCrush";
 import AdminPanel from "./pages/AdminPanel";
 import { getAllUsers } from "./actions/allUsers.action";
 import { getFullUsers } from "./actions/fullUsers.action";
@@ -54,10 +53,6 @@ const router = createBrowserRouter([
       {
         path: "/scratchDigimon",
         element: <ScratchDigimon />,
-      },
-      {
-        path: "/digiCrush",
-        element: <DigiCrush />,
       },
       {
         path: "/commentSpace",
