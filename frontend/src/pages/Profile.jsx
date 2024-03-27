@@ -1,5 +1,5 @@
-import { Link, useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
 import isEmpty from "../utils/isEmpty";
 import adminPanel from "../assets/admin.png";
 import imgProfile from "../utils/imgProfile";
@@ -11,6 +11,14 @@ function Profile() {
   const { user } = useOutletContext();
   const [isPopupImg, setIsPopupImg] = useState(false);
   const [isPopupEdit, setIsPopupEdit] = useState(false);
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const handlePopupImg = () => {
     setIsPopupImg(!isPopupImg);

@@ -14,6 +14,9 @@ function App() {
   return (
     <section className="app-start">
       <h1> DigiGame </h1>
+      <p className="app-p">
+        Collect your favorite digimon by scratching cards.
+      </p>
       {!isSignedIn && <SingIn />}
       {isSignedIn && <SignUp handleSignIn={handleSignIn} />}
 
@@ -21,7 +24,7 @@ function App() {
         <img
           className="app-terriermon"
           src={terriermon}
-          alt="Terriermon qui se touche la joue"
+          alt="Terriermon touching his cheek"
         />
       </picture>
       {!isSignedIn && (
